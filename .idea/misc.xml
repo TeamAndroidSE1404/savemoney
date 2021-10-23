@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.18888888888888888" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/drawable/border_style.xml" value="0.14444444444444443" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/drawable/ic_icon_category.xml" value="0.18611111111111112" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/drawable/main_header_selector.xml" value="0.425" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_add.xml" value="0.33" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_add_expense.xml" value="0.33" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_background.xml" value="0.21124620060790272" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_categories_item_list.xml" value="0.22" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_category_item.xml" value="0.434375" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_detail_expense.xml" value="0.33" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_expense_list_items.xml" value="0.21124620060790272" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_home.xml" value="0.3500905797101449" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_main.xml" value="0.21124620060790272" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_background.xml" value="0.21124620060790272" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_background_clarity.xml" value="0.302536231884058" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_card.xml" value="0.1" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_category_list.xml" value="0.3091684434968017" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_header.xml" value="0.21124620060790272" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_navigation_top_header.xml" value="0.22" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_popup_categories_list.xml" value="0.434375" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_popup_category_list.xml" value="0.434375" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18888888888888888" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.18888888888888888" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.33" />
+      </ProjectState>
+    </option>
   </component>
 </project>
