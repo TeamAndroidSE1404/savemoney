@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class Expense {
 
+    private int id;
+
     private String description;
 
     private Date date;
@@ -15,7 +17,8 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(String description, Date date, Category cate, double price) {
+    public Expense(int id, String description, Date date, Category cate, double price) {
+        this.id = id;
         this.description = description;
         this.date = date;
         this.cate = cate;
@@ -52,5 +55,13 @@ public class Expense {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

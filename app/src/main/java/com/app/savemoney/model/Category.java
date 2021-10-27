@@ -1,6 +1,9 @@
 package com.app.savemoney.model;
 
 public class Category {
+
+    private int id;
+
     private String categoryName;
 
     private String icon;
@@ -11,7 +14,8 @@ public class Category {
 
     }
 
-    public Category(String categoryName, String icon, String classify) {
+    public Category(int id, String categoryName, String icon, String classify) {
+        this.id = id;
         this.categoryName = categoryName;
         this.icon = icon;
         this.classify = classify;
@@ -39,5 +43,13 @@ public class Category {
 
     public void setClassify(String classify) {
         this.classify = classify;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

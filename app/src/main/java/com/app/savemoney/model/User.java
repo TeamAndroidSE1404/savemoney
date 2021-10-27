@@ -6,6 +6,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 0L;
 
     private String userName;
+    private String email;
     private String password;
     private String fullName;
 
