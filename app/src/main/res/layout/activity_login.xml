@@ -61,7 +61,7 @@
             android:id="@+id/button"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="ĐĂNH NHẬP"
+            android:text="ĐĂNG NHẬP"
             android:layout_marginTop="30dp"
             android:layout_gravity="center"
             android:textSize="20dp"

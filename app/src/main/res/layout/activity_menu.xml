@@ -33,7 +33,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:background="@drawable/ab">
@@ -41,13 +46,15 @@
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="0dp"
+            android:layout_weight="3"
             android:layout_marginTop="20dp"
             app:srcCompat="@drawable/profile" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginTop="10dp"
             android:text="WELCOME, QUANG HUNG"
             android:textSize="25dp"
@@ -55,14 +62,16 @@
     </LinearLayout>
 
 <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="400dp">
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="2">
 
     <LinearLayout
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_gravity="left">
+        android:layout_gravity="left"
+        android:layout_marginStart="30dp">
 
         <LinearLayout
             android:layout_width="280dp"
@@ -158,7 +167,8 @@
 
 
     </LinearLayout>
-
 </LinearLayout>
+</LinearLayout>
+
 
 </LinearLayout>
