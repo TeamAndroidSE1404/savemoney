@@ -115,7 +115,7 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="35dp"
-                            app:src="@drawable/ic_pencil_card" />
+                            app:srcCompat="@drawable/ic_pencil_card" />
 
                         <TextView
                             android:layout_width="100dp"
@@ -140,7 +140,7 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="35dp"
-                            app:src="@drawable/ic_clock" />
+                            app:srcCompat="@drawable/ic_clock" />
 
                         <TextView
                             android:layout_width="100dp"
@@ -164,7 +164,7 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="35dp"
-                            app:src="@drawable/ic_calendar" />
+                            app:srcCompat="@drawable/ic_calendar" />
 
                         <TextView
                             android:layout_width="100dp"
@@ -230,7 +230,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/linearLayout"
-                    app:src="@drawable/ic_setting_black" />
+                    app:srcCompat="@drawable/ic_setting_black" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
