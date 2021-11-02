@@ -26,25 +26,29 @@ public class ExpenseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_add_expense);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_add_category);
+    try {
 
-//        recyclerView = findViewById(R.id.rv_categories);
-//
-//        categoryList = new ArrayList<>();
-//        for (int i = 1; i <= 20; i++) {
-//            categoryList.add(new Category("Thue nha", ""));
-//        }
-//        categoryAdapter = new CategoryAdapter(categoryList, this);
-//
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-//
-//        recyclerView.setAdapter(categoryAdapter);
-//        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView = findViewById(R.id.rv_category_setting);
+
+        categoryList = new ArrayList<>();
+        for (int i = 1; i <= 20; i++) {
+            categoryList.add(new Category("Thue nha", ""));
+        }
+        categoryAdapter = new CategoryAdapter(categoryList, this);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+
+        recyclerView.setAdapter(categoryAdapter);
+        recyclerView.setLayoutManager(linearLayoutManager);
+    }catch (Exception ex){
+        ex.printStackTrace();
+    }
     }
 
     public void handleShowPopupListCategory(View view) {
         layoutPopup = (LinearLayout) findViewById(R.id.layout_popup_category_list);
-        layoutBackgroundClarity = (LinearLayout) findViewById(R.id.background_clarity);
+//        layoutBackgroundClarity = (LinearLayout) findViewById(R.id.background_clarity);
         layoutPopup.setVisibility(View.VISIBLE);
         layoutBackgroundClarity.setVisibility(View.VISIBLE);
 

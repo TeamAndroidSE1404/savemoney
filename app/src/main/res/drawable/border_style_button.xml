@@ -3,9 +3,8 @@
     >
     <item android:gravity="bottom">
         <shape>
-            <size android:height="1dp" />
-            <solid android:color="#CDCDCD" />
-
+            <size android:height="3dp" />
+            <solid android:color="@color/white" />
         </shape>
     </item>
 </layer-list>

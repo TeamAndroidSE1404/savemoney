@@ -18,7 +18,6 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
     ViewHolder viewHolder;
-
     List<Category> categoriesList;
     Context context;
 
@@ -32,7 +31,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View categoryView =
-                inflater.inflate(R.layout.activity_category_item, parent, false);
+                inflater.inflate(R.layout.activity_category_setting_item, parent, false);
 
         viewHolder = new ViewHolder(context ,categoryView);
         return viewHolder;
@@ -44,7 +43,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         Category category = categoriesList.get(position);
         // Set item views based on your views and data model
         holder.txtCategoryName.setText(category.getName());
-        holder.ivCategoryImage.setImageResource(R.drawable.icon_game);
+        holder.ivCategoryImage.setImageResource(R.drawable.ic_game);
+        holder.imgIconEdit.setImageResource(R.drawable.ic_pencil_rv);
     }
 
 
@@ -56,16 +56,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     /**
      * Lớp nắm giữ cấu trúc view
      */
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class  ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivCategoryImage;
         public TextView txtCategoryName;
-        public ImageView imgShowPopupCateList;
+        public ImageView imgIconEdit;
         public Context context;
         public ViewHolder(Context context ,View itemView) {
             super(itemView);
-            ivCategoryImage = (ImageView) itemView.findViewById(R.id.iv_category_name);
-            txtCategoryName = (TextView) itemView.findViewById(R.id.txt_category_name);
-            imgShowPopupCateList = (ImageView) itemView.findViewById(R.id.iv_category);
+            ivCategoryImage = (ImageView) itemView.findViewById(R.id.iv_category_setting_name);
+            txtCategoryName = (TextView) itemView.findViewById(R.id.txt_category_setting_name);
+            imgIconEdit = (ImageView) itemView.findViewById(R.id.iv_icon_edit);
             this.context = context;
         }
     }
