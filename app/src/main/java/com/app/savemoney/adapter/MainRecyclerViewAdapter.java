@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.savemoney.R;
@@ -46,21 +47,20 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         ChildRecyclerViewAdapter childRecyclerViewAdapter = new ChildRecyclerViewAdapter(list);
 
         holder.childRecyclerView.setAdapter(childRecyclerViewAdapter);
-
         double income = 0;
         double spend = 0;
 
         for (Expense e : list) {
             if (CommonCodeValues.INCOME.equals(e.getCate().getClassify())) {
-                income = +e.getPrice();
+                income += e.getPrice();
             } else if (CommonCodeValues.SPENDING.equals(e.getCate().getClassify())) {
-                spend = +e.getPrice();
+                spend += e.getPrice();
             }
         }
 
         holder.txtIncome.setText(income!=0?"+"+String.valueOf(ConvertUtils.addComaPrice(income)):"0");
 
-        holder.txtSpending.setText(spend!=0?"+"+String.valueOf(ConvertUtils.addComaPrice(spend)):"0");
+        holder.txtSpending.setText(spend!=0?"-"+String.valueOf(ConvertUtils.addComaPrice(spend)):"0");
 
         holder.txtDate.setText(DateUtils.dateToString(list.get(0).getDate(), CommonCodeValues.DATE_DD_MM_YYYY));
 

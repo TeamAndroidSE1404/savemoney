@@ -9,5 +9,7 @@ public class CommonCodeValues {
 
     public static final String DATE_DD_MM_YYYY = "dd/MM/yyyy";
 
+    public static final String DATE_DDMMYYYY_HHMM = "yyyyMMdd_HHmm";
+
 
 }

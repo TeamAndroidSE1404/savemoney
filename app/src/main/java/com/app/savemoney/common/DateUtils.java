@@ -21,7 +21,7 @@ public class DateUtils {
 
     }
 
-    public static String dateToString(Date date, String formatStr){
+    public static String dateToString(Date date, String formatStr) {
         String dateStr = "";
         try {
             SimpleDateFormat format = new SimpleDateFormat(formatStr);
@@ -33,6 +33,17 @@ public class DateUtils {
         }
 
         return dateStr;
+    }
+
+    public static Date StringToDate(String dateStr, String formatStr) {
+        Date date = null;
+        try {
+            SimpleDateFormat format = new SimpleDateFormat(formatStr);
+            date = format.parse(dateStr);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 
 }

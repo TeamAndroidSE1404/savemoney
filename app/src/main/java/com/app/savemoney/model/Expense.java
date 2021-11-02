@@ -1,10 +1,17 @@
 package com.app.savemoney.model;
 
-import java.util.Date;
+import com.app.savemoney.common.CommonCodeValues;
+import com.app.savemoney.common.DateUtils;
+import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+@IgnoreExtraProperties
 public class Expense {
 
-    private int id;
+    private String uid;
 
     private String description;
 
@@ -17,8 +24,8 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(int id, String description, Date date, Category cate, double price) {
-        this.id = id;
+    public Expense(String uid, String description, Date date, Category cate, double price) {
+        this.uid = uid;
         this.description = description;
         this.date = date;
         this.cate = cate;
@@ -57,11 +64,32 @@ public class Expense {
         this.price = price;
     }
 
-    public int getId() {
-        return id;
+    public String getUid() {
+        return uid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
+
+    public Map<String, Object> toMap() {
+        Map<String, Object> result = new HashMap<>();
+        result.put("uid", uid);
+        result.put("description", description);
+        result.put("date", DateUtils.dateToString(date, CommonCodeValues.DATE_DDMMYYYY_HHMM));
+        result.put("category", cate.getUid());
+        result.put("price", price);
+        return result;
+    }
+
+    public void toObject(HashMap<String, String> input, Map<String, Category> categories){
+        this.uid = input.get("uid");
+        this.description = input.get("description");
+        this.date = DateUtils.StringToDate(input.get("date"), CommonCodeValues.DATE_DDMMYYYY_HHMM);
+        this.cate = categories.get(input.get("category"));
+        this.price = Double.valueOf(input.get("price"));
+
+    }
+
+
 }

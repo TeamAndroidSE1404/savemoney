@@ -1,8 +1,15 @@
 package com.app.savemoney.model;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@IgnoreExtraProperties
 public class Category {
 
-    private int id;
+    private String uid;
 
     private String categoryName;
 
@@ -14,8 +21,8 @@ public class Category {
 
     }
 
-    public Category(int id, String categoryName, String icon, String classify) {
-        this.id = id;
+    public Category(String uid, String categoryName, String icon, String classify) {
+        this.uid = uid;
         this.categoryName = categoryName;
         this.icon = icon;
         this.classify = classify;
@@ -45,11 +52,23 @@ public class Category {
         this.classify = classify;
     }
 
-    public int getId() {
-        return id;
+    public String getUid() {
+        return uid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        Map<String, Object> result = new HashMap<>();
+
+        result.put("uid", uid);
+        result.put("categoryName", categoryName);
+        result.put("icon", icon);
+        result.put("classify", classify);
+
+        return result;
     }
 }
