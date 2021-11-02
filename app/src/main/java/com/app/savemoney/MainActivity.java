@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_profile);
 
-        DatabaseReference mDb = FirebaseDatabase.getInstance().getReference();
+//        DatabaseReference mDb = FirebaseDatabase.getInstance().getReference();
 
 
 
