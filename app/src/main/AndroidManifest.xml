@@ -13,11 +13,7 @@
             android:name=".ExpenseActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
         <activity
             android:name=".LoginScreenActivity"
@@ -72,21 +68,25 @@
             android:name=".MenuScreenActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+
         </activity>
         <activity
             android:name=".ProfileScreenActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+
         </activity>
         <activity
             android:name=".RegisterScreenActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+
         </activity>
         <activity
             android:name=".SettingScreenActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+
         </activity>
     </application>
 

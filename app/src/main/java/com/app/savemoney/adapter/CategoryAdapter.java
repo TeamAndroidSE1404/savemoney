@@ -40,11 +40,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(CategoryAdapter.ViewHolder holder, int position) {
-        Category category = categoriesList.get(position);
-        // Set item views based on your views and data model
-        holder.txtCategoryName.setText(category.getName());
-        holder.ivCategoryImage.setImageResource(R.drawable.ic_game);
-        holder.imgIconEdit.setImageResource(R.drawable.ic_pencil_rv);
+//        Category category = categoriesList.get(position);
+//        // Set item views based on your views and data model
+//        holder.txtCategoryName.setText(category.getName());
+//        holder.ivCategoryImage.setImageResource(R.drawable.ic_game);
+//        holder.imgIconEdit.setImageResource(R.drawable.ic_pencil_rv);
     }
 
 

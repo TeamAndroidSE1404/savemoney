@@ -1,12 +1,12 @@
 package com.app.savemoney.model;
 
-import com.google.firebase.database.Exclude;
-import com.google.firebase.database.IgnoreExtraProperties;
+//import com.google.firebase.database.Exclude;
+//import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@IgnoreExtraProperties
+//@IgnoreExtraProperties
 public class Category {
 
     private String uid;
@@ -60,15 +60,15 @@ public class Category {
         this.uid = uid;
     }
 
-    @Exclude
-    public Map<String, Object> toMap() {
-        Map<String, Object> result = new HashMap<>();
-
-        result.put("uid", uid);
-        result.put("categoryName", categoryName);
-        result.put("icon", icon);
-        result.put("classify", classify);
-
-        return result;
-    }
+//    @Exclude
+//    public Map<String, Object> toMap() {
+//        Map<String, Object> result = new HashMap<>();
+//
+//        result.put("uid", uid);
+//        result.put("categoryName", categoryName);
+//        result.put("icon", icon);
+//        result.put("classify", classify);
+//
+//        return result;
+//    }
 }
