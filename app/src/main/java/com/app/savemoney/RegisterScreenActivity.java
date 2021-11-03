@@ -18,7 +18,7 @@ public class RegisterScreenActivity extends AppCompatActivity {
             edtFullName.setError("Fullname can't empty");
             return false;
         }
-        else if(!fullName.matches("[a-zA-Z]+")){
+        else if(!fullName.matches("^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$")){
             edtFullName.requestFocus();
             edtFullName.setError("Fullname must be alphabet characters");
             return false;
@@ -36,12 +36,17 @@ public class RegisterScreenActivity extends AppCompatActivity {
         }
         else if(password.length() == 0){
             edtPassword.requestFocus();
-            edtPassword.setError("Email can't empty");
+            edtPassword.setError("Password can't empty");
             return false;
         }
         else if (password.length() <= 5){
             edtPassword.requestFocus();
             edtPassword.setError("Password at least 6 characters");
+            return false;
+        }
+        else if(rePassword.length() == 0){
+            edtRePassword.requestFocus();
+            edtRePassword.setError("Re-Password can't empty");
             return false;
         }
         else if(rePassword.length() <= 5){
@@ -50,6 +55,11 @@ public class RegisterScreenActivity extends AppCompatActivity {
             return false;
         }
         else if(password.length() != rePassword.length()){
+            edtRePassword.requestFocus();
+            edtRePassword.setError("Re-Password not matches password");
+            return false;
+        }
+        else if(!rePassword.equals(password)){
             edtRePassword.requestFocus();
             edtRePassword.setError("Re-Password not matches password");
             return false;
