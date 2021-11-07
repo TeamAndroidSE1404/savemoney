@@ -3,10 +3,16 @@ package com.app.savemoney;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,7 +31,11 @@ import com.app.savemoney.adapter.ViewPagerTabLayout;
 import com.app.savemoney.common.OnSwipeTouchListener;
 import com.app.savemoney.model.Category;
 import com.google.android.material.tabs.TabLayout;
+
 import android.content.Intent;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -38,9 +48,10 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
     private LinearLayout layoutPopup, layoutOverlap;
     private TextView txtDate, txtTime;
     private ImageView imgBack, imgSetting;
-
+    private EditText txtMoney;
     private int lastSelectedHour = -1;
     private int lastSelectedMinute = -1;
+    private String current = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +65,69 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
         imgSetting = findViewById(R.id.iv_setting);
         layoutOverlap = findViewById(R.id.background_overlay);
 
+        txtMoney = findViewById(R.id.txt_money);
+
+        txtMoney.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    Toast.makeText(getApplicationContext(), "Got the focus", Toast.LENGTH_SHORT).show();
+                    if (txtMoney.getText().toString().equals("0")) {
+                        txtMoney.setText("");
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Lost the focus", Toast.LENGTH_SHORT).show();
+                    if (txtMoney.getText().toString().equals("")) {
+                        txtMoney.setText("0");
+                    }
+                }
+            }
+        });
+        txtMoney.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!txtMoney.getText().toString().equals("")){
+                    if (!s.toString().equals(current)) {
+                        txtMoney.removeTextChangedListener(this);
+
+                        String cleanString = s.toString().replaceAll("[$,.]", "");
+
+                        double parsed = Double.parseDouble(cleanString);
+                        NumberFormat formatter = new DecimalFormat("##,###,###,###");
+                        String formatted = formatter.format(parsed);
+
+                        current = formatted;
+                        txtMoney.setText(formatted);
+                        txtMoney.setSelection(formatted.length());
+
+                        txtMoney.addTextChangedListener(this);
+                    }
+                }else {
+                    txtMoney.setText("0");
+                }
+
+            }
+        });
+
+
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent  imgBackIntent = new Intent(AddEditExpenseIncomeActivity.this, MainActivity.class );
+                Intent imgBackIntent = new Intent(AddEditExpenseIncomeActivity.this, MainActivity.class);
                 startActivity(imgBackIntent);
             }
         });
         imgSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent  imgSettingIntent = new Intent(AddEditExpenseIncomeActivity.this, ListExpenseIncomeActivity.class );
+                Intent imgSettingIntent = new Intent(AddEditExpenseIncomeActivity.this, ListExpenseIncomeActivity.class);
                 startActivity(imgSettingIntent);
             }
         });
@@ -74,6 +137,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
                 super.onSwipeLeft();
                 Toast.makeText(AddEditExpenseIncomeActivity.this, "Swipe Left gesture detected", Toast.LENGTH_SHORT).show();
             }
+
             @Override
             public void onSwipeRight() {
                 super.onSwipeRight();
@@ -85,10 +149,11 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
                 super.onSwipeUp();
                 Toast.makeText(AddEditExpenseIncomeActivity.this, "Swipe Up gesture detected", Toast.LENGTH_SHORT).show();
             }
+
             @Override
             public void onSwipeDown() {
                 super.onSwipeDown();
-                Animation animSlideDown = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_down);
+                Animation animSlideDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_down);
                 layoutPopup.startAnimation(animSlideDown);
                 layoutPopup.setVisibility(View.INVISIBLE);
                 layoutOverlap.setVisibility(View.INVISIBLE);
@@ -131,6 +196,11 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static String currencyFormat(String amount) {
+        DecimalFormat formatter = new DecimalFormat("##,###,###,###");
+        return formatter.format(Double.parseDouble(amount));
     }
 
     public void handleShowPopupListCategory(View view) {
