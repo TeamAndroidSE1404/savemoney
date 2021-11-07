@@ -47,13 +47,13 @@
                     android:textSize="20dp" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/btn_edit_show_screen_category"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                app:srcCompat="@drawable/ic_edit_icon_setting_category" />
+<!--            <ImageView-->
+<!--                android:id="@+id/btn_edit_show_screen_category"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_weight="2"-->
+<!--                app:srcCompat="@drawable/ic_edit_icon_setting_category" />-->
         </LinearLayout>
     </LinearLayout>
 
