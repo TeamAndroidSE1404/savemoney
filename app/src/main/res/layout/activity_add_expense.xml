@@ -68,30 +68,18 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/border_style_card"
-                        android:orientation="horizontal"
-                        android:padding="15dp"
-                        >
+                        android:layout_marginEnd="20dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:gravity="end"
+                        android:inputType="numberDecimal"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        android:textSize="30dp" />
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="35dp"
-                            app:srcCompat="@drawable/ic_pencil_card" />
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="Note" />
-
-                        <Spinner
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:spinnerMode="dropdown" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/input_time"
+                    <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
@@ -105,10 +93,7 @@
                         android:textColor="@android:color/white"
                         android:textSize="15dp" />
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="35dp"
-                            app:srcCompat="@drawable/ic_clock" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -129,20 +114,10 @@
                         android:id="@+id/card_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/border_style_card"
-                        android:orientation="horizontal"
-                        android:padding="15dp">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="35dp"
-                            app:srcCompat="@drawable/ic_calendar" />
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="Date" />
+                        android:layout_gravity="center"
+                        android:layout_margin="20dp"
+                        app:cardBackgroundColor="#FAF5F5"
+                        app:cardCornerRadius="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -286,16 +261,11 @@
             android:visibility="invisible"
             >
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="28dp"
-                    android:layout_weight="1"
-                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/linearLayout"
-                    app:srcCompat="@drawable/ic_setting_black" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/border_style_card"
+                android:orientation="horizontal">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

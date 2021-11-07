@@ -14,12 +14,14 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.app.savemoney.adapter.AddEditCategoryAdapter;
 import com.app.savemoney.adapter.AddEditExpenseIncomeAdapter;
+import com.app.savemoney.adapter.ViewPagerTabLayout;
 import com.app.savemoney.common.OnSwipeTouchListener;
 import com.app.savemoney.model.Category;
 import com.google.android.material.tabs.TabLayout;
@@ -36,6 +38,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
     private LinearLayout layoutPopup, layoutOverlap;
     private TextView txtDate, txtTime;
     private ImageView imgBack, imgSetting;
+
     private int lastSelectedHour = -1;
     private int lastSelectedMinute = -1;
 
@@ -50,6 +53,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
         imgBack = findViewById(R.id.icon_back_add_expense);
         imgSetting = findViewById(R.id.iv_setting);
         layoutOverlap = findViewById(R.id.background_overlay);
+
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
