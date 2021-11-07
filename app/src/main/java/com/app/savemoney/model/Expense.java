@@ -21,6 +21,14 @@ public class Expense {
 
     private double price;
 
+    public static final String UID = "uid";
+    public static final String DESCRIPTION = "description";
+    public static final String DATE = "date";
+    public static final String CATEGORY = "category";
+    public static final String PRICE = "price";
+
+
+
     public Expense() {
     }
 
@@ -74,20 +82,20 @@ public class Expense {
 
     public Map<String, Object> toMap() {
         Map<String, Object> result = new HashMap<>();
-        result.put("uid", uid);
-        result.put("description", description);
-        result.put("date", DateUtils.dateToString(date, CommonCodeValues.DATE_DDMMYYYY_HHMM));
-        result.put("category", cate.getUid());
-        result.put("price", price);
+        result.put(UID, uid);
+        result.put(DESCRIPTION, description);
+        result.put(DATE, DateUtils.dateToString(date, CommonCodeValues.DATE_DDMMYYYY_HHMM));
+        result.put(CATEGORY, cate.getUid());
+        result.put(PRICE, price);
         return result;
     }
 
-    public void toObject(HashMap<String, String> input, Map<String, Category> categories){
-        this.uid = input.get("uid");
-        this.description = input.get("description");
-        this.date = DateUtils.StringToDate(input.get("date"), CommonCodeValues.DATE_DDMMYYYY_HHMM);
-        this.cate = categories.get(input.get("category"));
-        this.price = Double.valueOf(input.get("price"));
+    public void toObject(HashMap<String, Object> input, Map<String, Category> categories){
+        this.uid = (String) input.get(UID);
+        this.description = (String)input.get(DESCRIPTION);
+        this.date = DateUtils.StringToDate(((String)input.get(DATE)), CommonCodeValues.DATE_DDMMYYYY_HHMM);
+        this.cate = categories.get((String)input.get(CATEGORY));
+        this.price = Double.valueOf((Long)input.get(PRICE));
 
     }
 

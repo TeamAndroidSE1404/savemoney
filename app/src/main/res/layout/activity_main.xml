@@ -93,25 +93,26 @@
         >
 
         <Button
-            android:id="@+id/btn_test"
+            android:id="@+id/btn_main_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phuchell"
+            android:text="Menu"
             android:onClick="testClick"
 
             />
 
         <Button
+            android:id="@+id/btn_main_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="clickAbc"
-            android:text="abc" />
+            android:text="Add" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="clickXyz"
-            android:text="XYZ" />
+            android:text="Category" />
     </LinearLayout>
 
 
