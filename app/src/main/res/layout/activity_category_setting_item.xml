@@ -13,28 +13,44 @@
         android:background="@drawable/border_style_card"
         android:orientation="horizontal"
         android:padding="5dp">
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/iv_category_setting_name"
+                android:id="@+id/iv_category_setting_remove"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                tools:srcCompat="@drawable/ic_remove_category" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_category_setting"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:gravity="center"
-                tools:src="@drawable/ic_game" />
+                tools:srcCompat="@drawable/ic_game" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="5"
+            android:layout_weight="8"
             android:orientation="horizontal"
             android:padding="15dp">
 
@@ -54,12 +70,12 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/iv_icon_edit"
+                android:id="@+id/iv_category_setting_edit"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_weight="1"
                 android:layout_gravity="center"
-                tools:src="@drawable/ic_pencil_rv" />
+                tools:srcCompat="@drawable/ic_pencil_rv" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
