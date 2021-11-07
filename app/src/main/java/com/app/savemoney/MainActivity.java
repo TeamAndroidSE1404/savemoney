@@ -231,37 +231,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-    public void testClick(View view) {
-
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://savemoney-fcf71-default-rtdb.asia-southeast1.firebasedatabase.app");
-        database.setLogLevel(Logger.Level.DEBUG);
-        DatabaseReference myRef = database.getReference();
-
-        String key = myRef.child("Expenses").push().getKey();
-        String key1 = myRef.child("Categories").push().getKey();
-
-
-        User user = new User("phuchell", "phuchell@gmail.com", "123123", "Truong Phuc");
-
-        Category a = new Category(key, "Khach san", "das", "0");
-
-        Expense e = new Expense(key1, "An ngu nghi", new Date(), a, 100);
-
-
-        myRef.child("Categories").child(a.getUid()).setValue(a.toMap());
-        myRef.child("Expenses").child(e.getUid()).setValue(e.toMap());
-
-
-        myRef.child("Users").child(user.getUserName()).setValue(user.toMap());
-
-        List<String> listEx = new ArrayList<>();
-
-        List<String> listCate = new ArrayList<>();
-
-
-    }
+    
 
     public void clickAbc(View view) {
         // Write a message to the database
