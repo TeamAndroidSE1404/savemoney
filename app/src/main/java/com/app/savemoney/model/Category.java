@@ -27,6 +27,9 @@ public class Category {
         this.icon = icon;
         this.classify = classify;
     }
+    public Category(String categoryName) {
+        this.categoryName = categoryName;
+    }
 
     public String getCategoryName() {
         return categoryName;
