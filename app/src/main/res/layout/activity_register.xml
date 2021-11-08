@@ -84,7 +84,7 @@
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/btn_regis"
+            android:id="@+id/btn_register"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

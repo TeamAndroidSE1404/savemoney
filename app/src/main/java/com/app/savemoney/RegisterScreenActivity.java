@@ -1,16 +1,18 @@
 package com.app.savemoney;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterScreenActivity extends AppCompatActivity {
 
+    private Button btnRegister;
+    private TextView txtLogin;
     EditText edtFullName, edtEmail, edtPassword, edtRePassword;
-    Button btnRegister;
 
     private Boolean validateRegister(String fullName, String email, String password, String rePassword) {
         if(fullName.length() ==0){
@@ -76,16 +78,29 @@ public class RegisterScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        btnRegister = findViewById(R.id.btn_register);
+        txtLogin = findViewById(R.id.txt_login);
 
         edtFullName = findViewById(R.id.edit_fullname);
         edtEmail = findViewById(R.id.edit_email);
         edtPassword = findViewById(R.id.edit_password);
         edtRePassword = findViewById(R.id.edit_rePassword);
-        btnRegister = findViewById(R.id.btn_regis);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intentBtnRegister = new Intent(RegisterScreenActivity.this, LoginScreenActivity.class);
+                startActivity(intentBtnRegister);
+            }
+        });
+
+        txtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentTxtLogin = new Intent(RegisterScreenActivity.this, LoginScreenActivity.class);
+                startActivity(intentTxtLogin);
+            }
+        });
                 String fullName = edtFullName.getText().toString();
                 String email = edtEmail.getText().toString();
                 String password = edtPassword.getText().toString();
