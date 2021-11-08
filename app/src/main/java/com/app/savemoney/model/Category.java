@@ -1,12 +1,12 @@
 package com.app.savemoney.model;
 
-import com.google.firebase.database.Exclude;
-import com.google.firebase.database.IgnoreExtraProperties;
+//import com.google.firebase.database.Exclude;
+//import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@IgnoreExtraProperties
+//@IgnoreExtraProperties
 public class Category {
 
     private String uid;

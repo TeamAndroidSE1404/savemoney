@@ -51,8 +51,8 @@
 
             <ImageView
                 android:id="@+id/ic_check_mark"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:layout_weight="2"
                 app:srcCompat="@drawable/ic_checkmark_correct" />
