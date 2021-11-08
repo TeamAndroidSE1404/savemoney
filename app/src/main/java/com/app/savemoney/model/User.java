@@ -9,28 +9,23 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class User {
 
-    private String userName;
     private String email;
     private String password;
     private String fullName;
+
+    public static final String EMAIL = "email";
+    public static final String PASSWORD = "password";
+    public static final String FULL_NAME = "fullName";
+
 
     public User() {
 
     }
 
     public User(String userName, String email, String password, String fullName) {
-        this.userName = userName;
         this.email = email;
         this.password = password;
         this.fullName = fullName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getEmail() {
@@ -61,10 +56,9 @@ public class User {
     public Map<String, Object> toMap() {
         Map<String, Object> result = new HashMap<>();
 
-        result.put("username", userName);
-        result.put("email", email);
-        result.put("password", password);
-        result.put("fullname", fullName);
+        result.put(EMAIL, email);
+        result.put(PASSWORD, password);
+        result.put(FULL_NAME, fullName);
 
         return result;
 

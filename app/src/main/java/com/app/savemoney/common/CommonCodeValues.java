@@ -11,5 +11,11 @@ public class CommonCodeValues {
 
     public static final String DATE_DDMMYYYY_HHMM = "yyyyMMdd_HHmm";
 
+    public static final String INSTANCE = "https://savemoney-fcf71-default-rtdb.asia-southeast1.firebasedatabase.app";
+
+    public static final String DB_EXPENSES = "Expenses";
+    public static final String DB_CATEGORIES = "Categories";
+    public static final String DB_USERS = "Users";
+
 
 }

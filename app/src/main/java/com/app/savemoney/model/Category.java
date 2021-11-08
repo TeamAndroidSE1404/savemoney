@@ -17,6 +17,11 @@ public class Category {
 
     private String classify;
 
+    public static final String UID = "uid";
+    public static final String CATEGORY_NAME = "categoryName";
+    public static final String ICON = "icon";
+    public static final String CLASSIFY = "classify";
+
     public Category() {
 
     }
@@ -26,6 +31,9 @@ public class Category {
         this.categoryName = categoryName;
         this.icon = icon;
         this.classify = classify;
+    }
+    public Category(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getCategoryName() {
@@ -60,15 +68,24 @@ public class Category {
         this.uid = uid;
     }
 
-//    @Exclude
-//    public Map<String, Object> toMap() {
-//        Map<String, Object> result = new HashMap<>();
-//
-//        result.put("uid", uid);
-//        result.put("categoryName", categoryName);
-//        result.put("icon", icon);
-//        result.put("classify", classify);
-//
-//        return result;
-//    }
+    @Exclude
+    public Map<String, Object> toMap() {
+        Map<String, Object> result = new HashMap<>();
+
+        result.put(UID, uid);
+        result.put(CATEGORY_NAME, categoryName);
+        result.put(ICON, icon);
+        result.put(CLASSIFY, classify);
+
+        return result;
+    }
+
+    public void toObject(HashMap<String, String> input) {
+        this.uid = input.get(UID);
+        this.categoryName = input.get(CATEGORY_NAME);
+        this.icon = input.get(ICON);
+        this.classify = input.get(CLASSIFY);
+
+
+    }
 }

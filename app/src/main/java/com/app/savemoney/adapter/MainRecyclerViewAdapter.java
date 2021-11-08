@@ -1,5 +1,6 @@
 package com.app.savemoney.adapter;
 
+import android.content.Context;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +26,18 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     Map<Integer, List<Expense>> expenseList;
 
-    public MainRecyclerViewAdapter(Map<Integer, List<Expense>> expenseList) {
+    Context context;
+
+    public MainRecyclerViewAdapter(Context context, Map<Integer, List<Expense>> expenseList) {
         this.expenseList = expenseList;
+        this.context = context;
+    }
+
+    public void changedData(Map<Integer, List<Expense>> expenseList){
+        this.expenseList = expenseList;
+        this.notifyDataSetChanged();
+
+
     }
 
     @NonNull
@@ -34,6 +45,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+//        LayoutInflater layoutInflater = LayoutInflater.from(this.context);
 
         View view = layoutInflater.inflate(R.layout.section_row, parent, false);
 

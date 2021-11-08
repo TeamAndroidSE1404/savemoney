@@ -1,272 +1,332 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:background="#2497F3"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            app:srcCompat="@drawable/ic_back_arrow" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:background="#2497F3"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/iv_category"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:onClick="handleShowPopupListCategory"
-            app:srcCompat="@drawable/ic_game" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:orientation="vertical">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:background="@null"
-                android:ems="10"
-                android:gravity="end"
-                android:inputType="numberDecimal"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:text="0"
-                android:textColor="@android:color/white"
-                android:textSize="30dp" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:background="@null"
-                android:ems="10"
-                android:gravity="end"
-                android:inputType="numberDecimal"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:text="0="
-                android:textColor="@android:color/white"
-                android:textSize="15dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints"
-        android:layout_gravity="center"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.3"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:cardCornerRadius="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <LinearLayout
-                        android:id="@+id/input_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/border_style_card"
-                        android:orientation="horizontal"
-                        android:padding="15dp"
-                        >
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="35dp"
-                            app:srcCompat="@drawable/ic_pencil_card" />
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="Note" />
-
-                        <Spinner
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:spinnerMode="dropdown" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/input_time"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/border_style_card"
-                        android:orientation="horizontal"
-                        android:padding="15dp">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="35dp"
-                            app:srcCompat="@drawable/ic_clock" />
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="Time" />
-
-                        <Spinner
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:spinnerMode="dropdown" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/border_style_card"
-                        android:orientation="horizontal"
-                        android:padding="15dp">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="35dp"
-                            app:srcCompat="@drawable/ic_calendar" />
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="Date" />
-
-                        <Spinner
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:spinnerMode="dropdown" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="3"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_add_expense"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="#2497F3"
-            android:text="New Expense" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_popup_category_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="10"
-        android:background="@color/white"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="visible">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/border_style_card"
-            android:orientation="horizontal">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:background="#2497F3"
+                android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/icon_back_add_expense"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="28dp"
-                    android:layout_weight="1"
-                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/linearLayout"
-                    app:srcCompat="@drawable/ic_setting_black" />
+                    android:layout_marginStart="20dp"
+                    app:srcCompat="@drawable/ic_back_arrow" />
 
-                <LinearLayout
-                    android:id="@+id/linearLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="99dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="10dp"
-                        android:padding="5dp"
-                        android:text="Expense"
-                        android:textAlignment="center"
-                        android:textColor="#2497F3" />
-
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="5dp"
-                        android:text="Income"
-                        android:textAlignment="center" />
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_categories"
+        <LinearLayout
+
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:background="#2497F3"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_category"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:onClick="handleShowPopupListCategory"
+                    app:srcCompat="@drawable/ic_game" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/txt_money"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:gravity="end"
+                        android:inputType="numberDecimal"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="0"
+                        android:maxLength="14"
+                        android:textColor="@android:color/white"
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:gravity="end"
+                        android:inputType="numberDecimal"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="0="
+                        android:textColor="@android:color/white"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="15"
+                android:gravity="top"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="20dp"
+                        app:cardBackgroundColor="#FAF5F5"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <LinearLayout
+                                android:id="@+id/input_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/border_style_card"
+                                android:orientation="horizontal"
+                                android:padding="7dp">
+
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="30dp"
+                                    app:srcCompat="@drawable/ic_pencil_card" />
+
+                                <TextView
+                                    android:layout_width="70dp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="Date" />
+
+                                <TextView
+                                    android:id="@+id/txt_date"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="2021-02-26" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/input_time"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/border_style_card"
+                                android:orientation="horizontal"
+                                android:padding="7dp">
+
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="30dp"
+                                    app:srcCompat="@drawable/ic_clock" />
+
+                                <TextView
+                                    android:layout_width="70dp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="Time"
+                                    />
+
+                                <TextView
+                                    android:id="@+id/txt_time"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="10:20 AM" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="7dp"
+                                android:layout_gravity="center">
+
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="30dp"
+                                    app:srcCompat="@drawable/ic_calendar" />
+
+                                <TextView
+                                    android:layout_width="70dp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="Note" />
+
+                                <EditText
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="5dp"
+                                    android:gravity="end"
+                                    android:maxLength="17"
+                                    android:textSize="15dp"
+                                    android:background="@android:color/transparent"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/btn_add_expense"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:backgroundTint="#2497F3"
+                        android:text="New Expense"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/background_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:background="#80000000"
+            android:orientation="vertical"
+            android:visibility="invisible"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_popup_category_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom"
+            android:layout_weight="2"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/border_style_card"
+                android:orientation="horizontal">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_setting"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="28dp"
+                        android:layout_weight="1"
+                        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+                        app:srcCompat="@drawable/ic_gear_setting" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <TextView
+                            android:layout_width="99dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="10dp"
+                            android:padding="5dp"
+                            android:text="Expense"
+                            android:textAlignment="center"
+                            android:textColor="#2497F3" />
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="5dp"
+                            android:text="Income"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_categories"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

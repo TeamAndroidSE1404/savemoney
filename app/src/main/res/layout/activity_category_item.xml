@@ -28,7 +28,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:gravity="center"
-                tools:src="@drawable/ic_game" />
+                tools:srcCompat="@drawable/ic_game" />
         </LinearLayout>
 
         <LinearLayout
