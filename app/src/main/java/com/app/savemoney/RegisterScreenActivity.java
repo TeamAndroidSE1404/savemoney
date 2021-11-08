@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,63 +16,50 @@ public class RegisterScreenActivity extends AppCompatActivity {
     EditText edtFullName, edtEmail, edtPassword, edtRePassword;
 
     private Boolean validateRegister(String fullName, String email, String password, String rePassword) {
-        if(fullName.length() ==0){
+        if (fullName.length() == 0) {
             edtFullName.requestFocus();
             edtFullName.setError("Fullname can't empty");
             return false;
-        }
-        else if(!fullName.matches("^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$")){
+        } else if (!fullName.matches("^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$")) {
             edtFullName.requestFocus();
             edtFullName.setError("Fullname must be alphabet characters");
             return false;
-        }
-
-        else if(email.length() ==0){
+        } else if (email.length() == 0) {
             edtEmail.requestFocus();
             edtEmail.setError("Email can't empty");
             return false;
-        }
-        else if(!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")){
+        } else if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
             edtEmail.requestFocus();
             edtEmail.setError("Please input valid email");
             return false;
-        }
-        else if(password.length() == 0){
+        } else if (password.length() == 0) {
             edtPassword.requestFocus();
             edtPassword.setError("Password can't empty");
             return false;
-        }
-        else if (password.length() <= 5){
+        } else if (password.length() <= 5) {
             edtPassword.requestFocus();
             edtPassword.setError("Password at least 6 characters");
             return false;
-        }
-        else if(rePassword.length() == 0){
+        } else if (rePassword.length() == 0) {
             edtRePassword.requestFocus();
             edtRePassword.setError("Re-Password can't empty");
             return false;
-        }
-        else if(rePassword.length() <= 5){
+        } else if (rePassword.length() <= 5) {
             edtRePassword.requestFocus();
             edtRePassword.setError("Re-Password at least 6 characters");
             return false;
-        }
-        else if(password.length() != rePassword.length()){
+        } else if (password.length() != rePassword.length()) {
             edtRePassword.requestFocus();
             edtRePassword.setError("Re-Password not matches password");
             return false;
-        }
-        else if(!rePassword.equals(password)){
+        } else if (!rePassword.equals(password)) {
             edtRePassword.requestFocus();
             edtRePassword.setError("Re-Password not matches password");
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
-
-
 
 
     @Override
@@ -89,8 +77,16 @@ public class RegisterScreenActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentBtnRegister = new Intent(RegisterScreenActivity.this, LoginScreenActivity.class);
-                startActivity(intentBtnRegister);
+
+                String fullName = edtFullName.getText().toString();
+                String email = edtEmail.getText().toString();
+                String password = edtPassword.getText().toString();
+                String rePassword = edtRePassword.getText().toString();
+                if (validateRegister(fullName, email, password, rePassword)) {
+                    Intent intentBtnRegister = new Intent(RegisterScreenActivity.this, LoginScreenActivity.class);
+                    startActivity(intentBtnRegister);
+                    finish();
+                }
             }
         });
 
@@ -99,15 +95,10 @@ public class RegisterScreenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intentTxtLogin = new Intent(RegisterScreenActivity.this, LoginScreenActivity.class);
                 startActivity(intentTxtLogin);
+                finish();
             }
         });
-                String fullName = edtFullName.getText().toString();
-                String email = edtEmail.getText().toString();
-                String password = edtPassword.getText().toString();
-                String rePassword = edtRePassword.getText().toString();
-                validateRegister(fullName, email, password, rePassword);
-            }
-        });
+
 
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,27 +17,23 @@ public class LoginScreenActivity extends AppCompatActivity {
     EditText edtEmail, edtPassword;
 
     private Boolean validateLogin(String email, String password) {
-        if(email.length() ==0){
+        if (email.length() == 0) {
             edtEmail.requestFocus();
             edtEmail.setError("Email can't empty");
             return false;
-        }
-        else if(!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")){
+        } else if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
             edtEmail.requestFocus();
             edtEmail.setError("Please input valid email");
             return false;
-        }
-        else if(password.length() == 0){
+        } else if (password.length() == 0) {
             edtPassword.requestFocus();
             edtPassword.setError("Password can't empty");
             return false;
-        }
-        else if (password.length() <= 5){
+        } else if (password.length() <= 5) {
             edtPassword.requestFocus();
             edtPassword.setError("Password at least 6 characters");
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
@@ -54,8 +51,15 @@ public class LoginScreenActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentBtnLogin = new Intent(LoginScreenActivity.this, MainActivity.class);
-                startActivity(intentBtnLogin);
+
+                String email = edtEmail.getText().toString();
+                String password = edtPassword.getText().toString();
+                if (validateLogin(email, password)) {
+
+                    Intent intentBtnLogin = new Intent(LoginScreenActivity.this, MainActivity.class);
+                    startActivity(intentBtnLogin);
+                    finish();
+                }
             }
         });
 
@@ -64,11 +68,9 @@ public class LoginScreenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intentTxtRegister = new Intent(LoginScreenActivity.this, RegisterScreenActivity.class);
                 startActivity(intentTxtRegister);
+                finish();
             }
-                String email = edtEmail.getText().toString();
-                String password = edtPassword.getText().toString();
-                validateLogin(email, password);
-            }
+
 
         });
     }

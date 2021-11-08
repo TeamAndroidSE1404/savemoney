@@ -8,9 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.savemoney.adapter.CategoryAdapter;
-import com.app.savemoney.dto.Category;
-
 import java.util.ArrayList;
 import java.util.List;
 
