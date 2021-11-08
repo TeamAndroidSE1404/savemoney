@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -21,19 +21,26 @@
             android:layout_height="wrap_content"
             android:text="ĐĂNG KÝ TÀI KHOẢN"
             android:gravity="center"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="30dp"
             android:textSize="30dp"
             android:textColor="@color/white"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
         <EditText
-            android:id="@+id/edit_username"
+            android:id="@+id/edit_fullname"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:hint="Họ và Tên"
-            android:inputType="textPersonName|textCapWords"
-            android:textColorHint="@color/white"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hoverGray"
             android:backgroundTint="@color/white"
             android:textSize="20dp" />
 
@@ -43,7 +50,8 @@
             android:hint="Email"
             android:id="@+id/edit_email"
             android:textSize="20dp"
-            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hoverGray"
             android:backgroundTint="@color/white"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
@@ -56,8 +64,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:hint="Mật khẩu"
-            android:inputType="textPersonName|textCapWords"
-            android:textColorHint="@color/white"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hoverGray"
             android:backgroundTint="@color/white"
             android:textSize="20dp" />
 
@@ -68,8 +77,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:hint="Nhập lại mật khẩu"
-            android:inputType="textPersonName|textCapWords"
-            android:textColorHint="@color/white"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hoverGray"
             android:backgroundTint="@color/white"
             android:textSize="20dp" />
 

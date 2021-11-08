@@ -41,7 +41,7 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="360dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="Tiếng Việt"
@@ -50,7 +50,7 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="360dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="English" android:backgroundTint="@color/gray"

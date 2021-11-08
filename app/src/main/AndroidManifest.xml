@@ -13,8 +13,8 @@
         <activity
             android:name=".AddEditExpenseIncomeActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"
-            >
+
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
@@ -97,21 +97,25 @@
             android:name=".MenuScreenActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+
         </activity>
         <activity
             android:name=".ProfileScreenActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+
         </activity>
         <activity
             android:name=".RegisterScreenActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+
         </activity>
         <activity
             android:name=".SettingScreenActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+
         </activity>
     </application>
 
