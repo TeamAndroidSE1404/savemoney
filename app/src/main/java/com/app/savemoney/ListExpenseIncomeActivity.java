@@ -26,7 +26,7 @@ public class ListExpenseIncomeActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
         btnAddCategory = findViewById(R.id.btn_add_category_setting);
-        btnEditCategory = findViewById(R.id.btn_edit_show_screen_category);
+//        btnEditCategory = findViewById(R.id.btn_edit_show_screen_category);
         btnBackHomePage = findViewById(R.id.icon_back_list_expense_income);
         btnAddCategory.setOnClickListener(new View.OnClickListener() {
             @Override
