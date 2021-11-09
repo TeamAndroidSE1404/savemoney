@@ -9,10 +9,13 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class User {
 
+    private String uid;
     private String email;
     private String password;
     private String fullName;
 
+
+    public static final String UID = "uid";
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";
     public static final String FULL_NAME = "fullName";
@@ -22,10 +25,18 @@ public class User {
 
     }
 
-    public User(String userName, String email, String password, String fullName) {
+    public User(String email, String password, String fullName) {
         this.email = email;
         this.password = password;
         this.fullName = fullName;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getEmail() {
@@ -55,7 +66,7 @@ public class User {
     @Exclude
     public Map<String, Object> toMap() {
         Map<String, Object> result = new HashMap<>();
-
+        result.put(UID, uid);
         result.put(EMAIL, email);
         result.put(PASSWORD, password);
         result.put(FULL_NAME, fullName);

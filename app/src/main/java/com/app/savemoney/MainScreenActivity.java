@@ -22,6 +22,7 @@ public class MainScreenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intentStart = new Intent(MainScreenActivity.this, LoginScreenActivity.class);
                 startActivity(intentStart);
+                finish();
 
             }
         });
