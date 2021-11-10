@@ -2,6 +2,7 @@ package com.app.savemoney;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -41,7 +42,8 @@ import java.util.Calendar;
 import java.util.List;
 
 public class AddEditExpenseIncomeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
     private List<Category> categoryList;
     private AddEditExpenseIncomeAdapter addEditExpenseIncomeAdapter;
     private RecyclerView recyclerView;
@@ -57,7 +59,8 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expense);
-
+        tabLayout = findViewById(R.id.tab_layout1);
+        viewPager = findViewById(R.id.view_pager1);
         txtDate = findViewById(R.id.txt_date);
         txtTime = findViewById(R.id.txt_time);
         layoutPopup = findViewById(R.id.layout_popup_category_list);
@@ -71,12 +74,10 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (hasFocus) {
-                    Toast.makeText(getApplicationContext(), "Got the focus", Toast.LENGTH_SHORT).show();
                     if (txtMoney.getText().toString().equals("0")) {
                         txtMoney.setText("");
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Lost the focus", Toast.LENGTH_SHORT).show();
                     if (txtMoney.getText().toString().equals("")) {
                         txtMoney.setText("0");
                     }
@@ -93,7 +94,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(!txtMoney.getText().toString().equals("")){
+                if (!txtMoney.getText().toString().equals("")) {
                     if (!s.toString().equals(current)) {
                         txtMoney.removeTextChangedListener(this);
 
@@ -109,7 +110,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
 
                         txtMoney.addTextChangedListener(this);
                     }
-                }else {
+                } else {
                     txtMoney.setText("0");
                 }
 
@@ -132,24 +133,6 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
             }
         });
         layoutPopup.setOnTouchListener(new OnSwipeTouchListener(AddEditExpenseIncomeActivity.this) {
-            @Override
-            public void onSwipeLeft() {
-                super.onSwipeLeft();
-                Toast.makeText(AddEditExpenseIncomeActivity.this, "Swipe Left gesture detected", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onSwipeRight() {
-                super.onSwipeRight();
-                Toast.makeText(AddEditExpenseIncomeActivity.this, "Swipe Right gesture detected", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onSwipeUp() {
-                super.onSwipeUp();
-                Toast.makeText(AddEditExpenseIncomeActivity.this, "Swipe Up gesture detected", Toast.LENGTH_SHORT).show();
-            }
-
             @Override
             public void onSwipeDown() {
                 super.onSwipeDown();
@@ -179,20 +162,26 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
                 showTimePickerDialog();
             }
         });
-
+        ViewPagerTabLayout demoFragment = new ViewPagerTabLayout(getSupportFragmentManager(),
+                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPager.setAdapter(demoFragment);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#2497F3"));
+        tabLayout.setSelectedTabIndicatorHeight((int) (2 * getResources().getDisplayMetrics().density));
+        tabLayout.setTabTextColors(Color.parseColor("#404040"), Color.parseColor("#2497F3"));
         try {
-            recyclerView = findViewById(R.id.rv_categories);
+//            recyclerView = findViewById(R.id.rv_categories);
 
-            categoryList = new ArrayList<>();
-            for (int i = 1; i <= 20; i++) {
-                categoryList.add(new Category("Thue nha"));
-            }
-            addEditExpenseIncomeAdapter = new AddEditExpenseIncomeAdapter(categoryList, this);
+//            categoryList = new ArrayList<>();
+//            for (int i = 1; i <= 20; i++) {
+//                categoryList.add(new Category("Thue nha"));
+//            }
+//            addEditExpenseIncomeAdapter = new AddEditExpenseIncomeAdapter(categoryList, this);
 
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
-            recyclerView.setAdapter(addEditExpenseIncomeAdapter);
-            recyclerView.setLayoutManager(linearLayoutManager);
+//            recyclerView.setAdapter(addEditExpenseIncomeAdapter);
+//            recyclerView.setLayoutManager(linearLayoutManager);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

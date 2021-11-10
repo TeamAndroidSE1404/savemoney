@@ -47,7 +47,4 @@ public class ViewPagerTabLayout extends FragmentStatePagerAdapter {
         return title;
     }
 
-    public interface FirstPageFragmentListener {
-        void onSwitchToNextFragment();
-    }
 }

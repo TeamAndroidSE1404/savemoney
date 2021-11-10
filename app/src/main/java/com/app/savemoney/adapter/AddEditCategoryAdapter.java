@@ -16,12 +16,10 @@ import java.util.List;
 
 public class AddEditCategoryAdapter extends RecyclerView.Adapter<AddEditCategoryAdapter.ViewHolder> {
 
-    AddEditCategoryAdapter.ViewHolder viewHolder;
-    List<Category> categoriesList;
-    Context context;
+    private AddEditCategoryAdapter.ViewHolder viewHolder;
+    private Context context;
 
-    public AddEditCategoryAdapter(List<Category> categoriesList, Context context) {
-        this.categoriesList = categoriesList;
+    public AddEditCategoryAdapter(Context context) {
         this.context = context;
     }
 
@@ -30,7 +28,7 @@ public class AddEditCategoryAdapter extends RecyclerView.Adapter<AddEditCategory
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View categoryView =
-                inflater.inflate(R.layout.activity_category_item, parent, false);
+                inflater.inflate(R.layout.activity_icon_list_rv, parent, false);
 
         viewHolder = new AddEditCategoryAdapter.ViewHolder(context, categoryView);
         return viewHolder;
@@ -39,29 +37,34 @@ public class AddEditCategoryAdapter extends RecyclerView.Adapter<AddEditCategory
 
     @Override
     public void onBindViewHolder(AddEditCategoryAdapter.ViewHolder holder, int position) {
-        Category category = categoriesList.get(position);
-        // Set item views based on your views and data model
-//        holder.txtCategoryName.setText(category.getCategoryName());
-        holder.ivCategoryImage.setImageResource(R.drawable.ic_game);
+        holder.ivCategoryImage1.setImageResource(R.drawable.ic_game);
+        holder.ivCategoryImage2.setImageResource(R.drawable.ic_game);
+        holder.ivCategoryImage3.setImageResource(R.drawable.ic_game);
+        holder.ivCategoryImage4.setImageResource(R.drawable.ic_game);
+        holder.ivCategoryImage5.setImageResource(R.drawable.ic_game);
     }
 
     @Override
     public int getItemCount() {
-        return categoriesList.size();
+        return 10;
     }
 
-    /**
-     * Lớp nắm giữ cấu trúc view
-     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView ivCategoryImage;
-        public TextView txtCategoryName;
+        public ImageView ivCategoryImage1;
+        public ImageView ivCategoryImage2;
+        public ImageView ivCategoryImage3;
+        public ImageView ivCategoryImage4;
+        public ImageView ivCategoryImage5;
+
         public Context context;
 
         public ViewHolder(Context context, View itemView) {
             super(itemView);
-            ivCategoryImage = (ImageView) itemView.findViewById(R.id.iv_category_name);
-            txtCategoryName = (TextView) itemView.findViewById(R.id.txt_category_name);
+            ivCategoryImage1 = (ImageView) itemView.findViewById(R.id.iv_category_setting_name_1);
+            ivCategoryImage2 = (ImageView) itemView.findViewById(R.id.iv_category_setting_name_2);
+            ivCategoryImage3 = (ImageView) itemView.findViewById(R.id.iv_category_setting_name_3);
+            ivCategoryImage4 = (ImageView) itemView.findViewById(R.id.iv_category_setting_name_4);
+            ivCategoryImage5 = (ImageView) itemView.findViewById(R.id.iv_category_setting_name_5);
             this.context = context;
         }
     }
