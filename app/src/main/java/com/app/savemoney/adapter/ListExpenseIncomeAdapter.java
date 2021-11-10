@@ -1,24 +1,31 @@
 package com.app.savemoney.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.savemoney.AddEditCategoryActivity;
+import com.app.savemoney.ListExpenseIncomeActivity;
 import com.app.savemoney.R;
 import com.app.savemoney.model.Category;
 
 import java.util.List;
 
-public class ListExpenseIncomeAdapter extends  RecyclerView.Adapter<ListExpenseIncomeAdapter.ViewHolder> {
+public class ListExpenseIncomeAdapter extends RecyclerView.Adapter<ListExpenseIncomeAdapter.ViewHolder> {
 
-    ListExpenseIncomeAdapter.ViewHolder viewHolder;
-    List<Category> categoriesList;
-    Context context;
+    private ListExpenseIncomeAdapter.ViewHolder viewHolder;
+    private List<Category> categoriesList;
+    private Context context;
+    private AlertDialog.Builder builder;
 
     public ListExpenseIncomeAdapter(List<Category> categoriesList, Context context) {
         this.categoriesList = categoriesList;
@@ -31,21 +38,49 @@ public class ListExpenseIncomeAdapter extends  RecyclerView.Adapter<ListExpenseI
         LayoutInflater inflater = LayoutInflater.from(context);
         View categoryView =
                 inflater.inflate(R.layout.activity_category_setting_item, parent, false);
+        builder = new AlertDialog.Builder(context);
 
-        viewHolder = new ListExpenseIncomeAdapter.ViewHolder(context ,categoryView);
+        viewHolder = new ListExpenseIncomeAdapter.ViewHolder(context, categoryView);
         return viewHolder;
 
     }
 
+
     @Override
     public void onBindViewHolder(ListExpenseIncomeAdapter.ViewHolder holder, int position) {
         Category category = categoriesList.get(position);
-        // Set item views based on your views and data model
         holder.txtCategoryName.setText(category.getCategoryName());
         holder.ivCategoryImage.setImageResource(R.drawable.ic_game);
         holder.ivEdit.setImageResource(R.drawable.ic_pencil_rv);
         holder.ivRemove.setImageResource(R.drawable.ic_remove_category);
+        holder.ivRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                builder.setTitle("Warning").setMessage("Do you want to delete item?")
+                        .setCancelable(true).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).show();
+
+            }
+        });
+        holder.ivEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (view.getContext(), AddEditCategoryActivity.class);
+                intent.putExtra("categoryId", 1);
+                context.startActivity(intent);
+            }
+        });
     }
 
 
@@ -54,16 +89,14 @@ public class ListExpenseIncomeAdapter extends  RecyclerView.Adapter<ListExpenseI
         return categoriesList.size();
     }
 
-    /**
-     * Lớp nắm giữ cấu trúc view
-     */
-    public static class  ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivCategoryImage;
         public TextView txtCategoryName;
         public ImageView ivEdit;
         public ImageView ivRemove;
         public Context context;
-        public ViewHolder(Context context ,View itemView) {
+
+        public ViewHolder(Context context, View itemView) {
             super(itemView);
             ivCategoryImage = (ImageView) itemView.findViewById(R.id.iv_category_setting);
             txtCategoryName = (TextView) itemView.findViewById(R.id.txt_category_setting_name);
@@ -71,6 +104,7 @@ public class ListExpenseIncomeAdapter extends  RecyclerView.Adapter<ListExpenseI
             ivRemove = (ImageView) itemView.findViewById(R.id.iv_category_setting_remove);
             this.context = context;
         }
+
     }
 
 
