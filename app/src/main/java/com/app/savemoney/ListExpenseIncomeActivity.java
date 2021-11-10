@@ -1,11 +1,15 @@
 package com.app.savemoney;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -18,7 +22,7 @@ public class ListExpenseIncomeActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private LinearLayout btnAddCategory;
-    private ImageView btnEditCategory, btnBackHomePage;
+    private ImageView btnBackHomePage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +30,11 @@ public class ListExpenseIncomeActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
         btnAddCategory = findViewById(R.id.btn_add_category_setting);
-//        btnEditCategory = findViewById(R.id.btn_edit_show_screen_category);
         btnBackHomePage = findViewById(R.id.icon_back_list_expense_income);
+
+        String categoryName = getIntent().getStringExtra("categoryName");
+        Toast.makeText(ListExpenseIncomeActivity.this, categoryName, Toast.LENGTH_SHORT).show();
+
         btnAddCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,17 +42,7 @@ public class ListExpenseIncomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        btnEditCategory.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Create new fragment and transaction
-//                ReplaceFragment replaceFragment = new ReplaceFragment();
-//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                transaction.replace(R.id.view_pager, replaceFragment);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
-//            }
-//        });
+
         btnBackHomePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,12 +50,16 @@ public class ListExpenseIncomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         //View page tab layout
         ViewPagerTabLayout demoFragment = new ViewPagerTabLayout(getSupportFragmentManager(),
                 FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(demoFragment);
         tabLayout.setupWithViewPager(viewPager);
-
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FFFFFF"));
+        tabLayout.setSelectedTabIndicatorHeight((int) (2 * getResources().getDisplayMetrics().density));
+        tabLayout.setTabTextColors(Color.parseColor("#212121"), Color.parseColor("#FFFFFF"));
     }
+
 
 }

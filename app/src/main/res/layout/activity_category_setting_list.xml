@@ -74,7 +74,8 @@
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabSelectedTextColor="@color/white">
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextAppearance="@style/AppTabTextAppearance">
 
             </com.google.android.material.tabs.TabLayout>
 

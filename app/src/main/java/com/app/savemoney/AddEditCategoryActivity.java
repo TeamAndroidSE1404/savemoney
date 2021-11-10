@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +26,7 @@ public class AddEditCategoryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Category> categoryList;
     private ImageView btnCheckMark, btnBackHomePage;
+    private EditText edtCateName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +34,14 @@ public class AddEditCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_category);
         btnCheckMark = findViewById(R.id.ic_check_mark);
         btnBackHomePage = findViewById(R.id.icon_back_category_setting);
-
+        edtCateName = findViewById(R.id.edt_cate_name);
+        String categoryId = getIntent().getStringExtra("categoryId");
+        Toast.makeText(AddEditCategoryActivity.this, categoryId, Toast.LENGTH_SHORT).show();
         btnCheckMark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddEditCategoryActivity.this, ListExpenseIncomeActivity.class);
+                intent.putExtra("categoryName", edtCateName.getText().toString());
                 startActivity(intent);
             }
         });
@@ -47,14 +53,16 @@ public class AddEditCategoryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
         try {
-            recyclerView = findViewById(R.id.rv_categories);
+            recyclerView = findViewById(R.id.rv_list_icon);
 
             categoryList = new ArrayList<>();
             for (int i = 1; i <= 20; i++) {
                 categoryList.add(new Category(""));
             }
-            addEditCategoryAdapter = new AddEditCategoryAdapter(categoryList, this);
+            addEditCategoryAdapter = new AddEditCategoryAdapter(this);
 
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
