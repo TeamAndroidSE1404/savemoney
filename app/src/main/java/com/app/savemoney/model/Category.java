@@ -17,21 +17,35 @@ public class Category {
 
     private String classify;
 
+    private String disable;
+
     public static final String UID = "uid";
     public static final String CATEGORY_NAME = "categoryName";
     public static final String ICON = "icon";
     public static final String CLASSIFY = "classify";
+    public static final String DISABLE = "disable";
 
     public Category() {
 
     }
 
-    public Category(String uid, String categoryName, String icon, String classify) {
+    public Category(String uid, String categoryName, String icon, String classify, String disable) {
         this.uid = uid;
         this.categoryName = categoryName;
         this.icon = icon;
         this.classify = classify;
+        this.disable = disable;
+
     }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
     public Category(String categoryName) {
         this.categoryName = categoryName;
     }
@@ -60,12 +74,12 @@ public class Category {
         this.classify = classify;
     }
 
-    public String getUid() {
-        return uid;
+    public String getDisable() {
+        return disable;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setDisable(String disable) {
+        this.disable = disable;
     }
 
     @Exclude
@@ -76,6 +90,7 @@ public class Category {
         result.put(CATEGORY_NAME, categoryName);
         result.put(ICON, icon);
         result.put(CLASSIFY, classify);
+        result.put(DISABLE, disable);
 
         return result;
     }
@@ -85,7 +100,7 @@ public class Category {
         this.categoryName = input.get(CATEGORY_NAME);
         this.icon = input.get(ICON);
         this.classify = input.get(CLASSIFY);
-
+        this.disable = input.get(DISABLE);
 
     }
 }

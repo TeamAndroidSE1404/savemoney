@@ -58,22 +58,24 @@ public class MainActivity extends AppCompatActivity {
 
     private Map<String, Category> listCategory = new HashMap<>();
 
-    Map<String, Category> test;
+    private Map<String, Category> test;
 
     private DatabaseReference databaseReference;
 
     private CategoryDao categoryDao;
+
+    private String userUid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
+        SharedPreferences sp1 = this.getSharedPreferences("Login", MODE_PRIVATE);
 
-        String unm=sp1.getString("userUid", null);
+        userUid = sp1.getString("userUid", null);
 
-        Log.d("1112", unm);
+//        Log.d("1112", unm);
 
         setInit();
         getCategory();
@@ -87,45 +89,24 @@ public class MainActivity extends AppCompatActivity {
         }, 2000);
 
 
-
     }
 
     private void setDataEvent() {
-        databaseReference = FirebaseDatabase.getInstance("https://savemoney-fcf71-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
+        databaseReference = FirebaseDatabase.getInstance(CommonCodeValues.INSTANCE).getReference();
 
         categoryList = new ArrayList<>();
 
         Map<String, Category> test = new HashMap<>();
-        DatabaseReference cateDb = FirebaseDatabase.getInstance("https://savemoney-fcf71-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Categories");
-      /*  cateDb.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    HashMap<String, String> cate = (HashMap<String, String>) dataSnapshot.getValue();
 
-                    Category category = new Category();
-                    category.toObject(cate);
-                    test.put(cate.get("uid"), category);
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-*/
         tempMap = new HashMap<>();
 
-//       MainRecyclerViewAdapter mainRecyclerViewAdapter = new MainRecyclerViewAdapter(this.getBaseContext(), expenseList);
-        MainRecyclerViewAdapter mainRecyclerViewAdapter = new MainRecyclerViewAdapter(this.getBaseContext(), tempMap);
+        MainRecyclerViewAdapter mainRecyclerViewAdapter = new MainRecyclerViewAdapter(tempMap);
         recyclerViewExpense = findViewById(R.id.rvMainMenu);
         recyclerViewExpense.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerViewExpense.setAdapter(mainRecyclerViewAdapter);
 
 
-        DatabaseReference expenseDb = FirebaseDatabase.getInstance("https://savemoney-fcf71-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Expenses");
+        DatabaseReference expenseDb = FirebaseDatabase.getInstance(CommonCodeValues.INSTANCE).getReference(CommonCodeValues.DB_USERS).child(userUid).child(CommonCodeValues.DB_EXPENSES);
 
         expenseDb.addValueEventListener(new ValueEventListener() {
             @Override
@@ -138,13 +119,13 @@ public class MainActivity extends AppCompatActivity {
                     if (!listCategory.isEmpty()) {
 
                         expense.toObject(expenseMap, listCategory);
+                        if (expense.getCate() != null) {
+                            expenseList1.add(expense);
+                        }
 
-                        expenseList1.add(expense);
                     }
 
                 }
-
-//                expenseList = getListExpense(expenseList1);
                 getListExpense(expenseList1);
                 mainRecyclerViewAdapter.changedData(tempMap);
             }
@@ -159,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getCategory() {
-        categoryDao = new CategoryDao();
+        categoryDao = new CategoryDao(userUid);
         categoryDao.getAllCate(new CategoryCallBack() {
             @Override
             public void onCallbackCategory(Map<String, Category> value) {
@@ -203,14 +184,12 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-    
+
 
     public void clickAbc(View view) {
         // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://savemoney-fcf71-default-rtdb.asia-southeast1.firebasedatabase.app");
-        DatabaseReference query = database.getReference();
-
-        String key = query.push().getKey();
+        Intent intentBtnLogin = new Intent(MainActivity.this, AddExpenseScreenActivity.class);
+        startActivity(intentBtnLogin);
 
 //        Category a = new Category(key, String.valueOf(i++), "das", "0");
 //
@@ -224,6 +203,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    
 
 }

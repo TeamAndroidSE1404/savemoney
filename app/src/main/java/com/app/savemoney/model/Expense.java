@@ -94,7 +94,9 @@ public class Expense {
         this.uid = (String) input.get(UID);
         this.description = (String)input.get(DESCRIPTION);
         this.date = DateUtils.StringToDate(((String)input.get(DATE)), CommonCodeValues.DATE_DDMMYYYY_HHMM);
+
         this.cate = categories.get((String)input.get(CATEGORY));
+
         this.price = Double.valueOf((Long)input.get(PRICE));
 
     }

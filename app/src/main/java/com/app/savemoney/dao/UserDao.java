@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 
 import com.app.savemoney.callbacks.UserCallBack;
 import com.app.savemoney.common.CommonCodeValues;
+import com.app.savemoney.common.DateUtils;
+import com.app.savemoney.model.Category;
+import com.app.savemoney.model.Expense;
 import com.app.savemoney.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,6 +59,20 @@ public class UserDao {
         String key = userRef.push().getKey();
         user.setUid(key);
         userRef.child(key).setValue(user.toMap());
+
+
+       String cateKey = userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).push().getKey();
+
+
+        Category cate = new Category(cateKey, "Cate1", "icon1", CommonCodeValues.INCOME, "0");
+
+        userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).child(cate.getUid()).setValue(cate.toMap());
+
+        String expenseKey = userRef.child(key).child(CommonCodeValues.DB_EXPENSES).push().getKey();
+
+        Expense expense = new Expense(expenseKey, "Decription", DateUtils.StringToDate("20210920_1010", CommonCodeValues.DATE_DDMMYYYY_HHMM), cate, 20);
+
+        userRef.child(key).child(CommonCodeValues.DB_EXPENSES).child(expense.getUid()).setValue(expense.toMap());
 
     }
 

@@ -26,14 +26,11 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     Map<Integer, List<Expense>> expenseList;
 
-    Context context;
-
-    public MainRecyclerViewAdapter(Context context, Map<Integer, List<Expense>> expenseList) {
+    public MainRecyclerViewAdapter(Map<Integer, List<Expense>> expenseList) {
         this.expenseList = expenseList;
-        this.context = context;
     }
 
-    public void changedData(Map<Integer, List<Expense>> expenseList){
+    public void changedData(Map<Integer, List<Expense>> expenseList) {
         this.expenseList = expenseList;
         this.notifyDataSetChanged();
 
@@ -45,7 +42,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-//        LayoutInflater layoutInflater = LayoutInflater.from(this.context);
+//      LayoutInflater layoutInflater = LayoutInflater.from(this.context);
 
         View view = layoutInflater.inflate(R.layout.section_row, parent, false);
 
@@ -63,16 +60,17 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         double spend = 0;
 
         for (Expense e : list) {
-            if (CommonCodeValues.INCOME.equals(e.getCate().getClassify())) {
-                income += e.getPrice();
-            } else if (CommonCodeValues.SPENDING.equals(e.getCate().getClassify())) {
-                spend += e.getPrice();
-            }
+                if (CommonCodeValues.INCOME.equals(e.getCate().getClassify())) {
+                    income += e.getPrice();
+                } else if (CommonCodeValues.SPENDING.equals(e.getCate().getClassify())) {
+                    spend += e.getPrice();
+                }
+
         }
 
-        holder.txtIncome.setText(income!=0?"+"+String.valueOf(ConvertUtils.addComaPrice(income)):"0");
+        holder.txtIncome.setText(income != 0 ? "+" + String.valueOf(ConvertUtils.addComaPrice(income)) : "0");
 
-        holder.txtSpending.setText(spend!=0?"-"+String.valueOf(ConvertUtils.addComaPrice(spend)):"0");
+        holder.txtSpending.setText(spend != 0 ? "-" + String.valueOf(ConvertUtils.addComaPrice(spend)) : "0");
 
         holder.txtDate.setText(DateUtils.dateToString(list.get(0).getDate(), CommonCodeValues.DATE_DD_MM_YYYY));
 

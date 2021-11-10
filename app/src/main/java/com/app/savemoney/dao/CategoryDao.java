@@ -20,8 +20,8 @@ public class CategoryDao {
     private DatabaseReference cateRef;
 
 
-    public CategoryDao() {
-        cateRef = FirebaseDatabase.getInstance(CommonCodeValues.INSTANCE).getReference(CommonCodeValues.DB_CATEGORIES);
+    public CategoryDao(String userUid) {
+        cateRef = FirebaseDatabase.getInstance(CommonCodeValues.INSTANCE).getReference(CommonCodeValues.DB_USERS).child(userUid).child(CommonCodeValues.DB_CATEGORIES);
     }
 
     Map<String, Category> categories = new HashMap<>();
