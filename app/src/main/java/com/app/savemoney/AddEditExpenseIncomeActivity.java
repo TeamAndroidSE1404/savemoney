@@ -30,6 +30,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.app.savemoney.adapter.AddEditCategoryAdapter;
 import com.app.savemoney.adapter.AddEditExpenseIncomeAdapter;
 import com.app.savemoney.adapter.ViewPagerTabLayout;
+import com.app.savemoney.adapter.ViewPagerTabLayoutInAddEditScreen;
 import com.app.savemoney.common.OnSwipeTouchListener;
 import com.app.savemoney.fragment.ExpenseFragment;
 import com.app.savemoney.model.Category;
@@ -51,7 +52,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
     private RecyclerView recyclerView;
     private LinearLayout layoutPopup, layoutOverlap;
     private TextView txtDate, txtTime;
-    private ImageView imgBack, imgSetting;
+    private ImageView imgBack;
     private EditText txtMoney;
     private Button btnAddExpense;
     private int lastSelectedHour = -1;
@@ -62,16 +63,14 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expense);
-        tabLayout = findViewById(R.id.tab_layout1);
-        viewPager = findViewById(R.id.view_pager1);
+        tabLayout = findViewById(R.id.tab_layout_in_add_edit_screen);
+        viewPager = findViewById(R.id.view_pager_in_add_edit_screen);
         txtDate = findViewById(R.id.txt_date);
         txtTime = findViewById(R.id.txt_time);
         layoutPopup = findViewById(R.id.layout_popup_category_list);
         imgBack = findViewById(R.id.icon_back_add_expense);
-        imgSetting = findViewById(R.id.iv_setting);
         layoutOverlap = findViewById(R.id.background_overlay);
         btnAddExpense = findViewById(R.id.btn_add_expense);
-
         txtMoney = findViewById(R.id.txt_money);
 
         setDateTimeInit();
@@ -123,21 +122,14 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
             }
         });
 
-
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        imgSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent imgSettingIntent = new Intent(AddEditExpenseIncomeActivity.this, ListExpenseIncomeActivity.class);
-                startActivity(imgSettingIntent);
-            }
-        });
-        layoutPopup.setOnTouchListener(new OnSwipeTouchListener(AddEditExpenseIncomeActivity.this) {
+
+        layoutOverlap.setOnTouchListener(new OnSwipeTouchListener(AddEditExpenseIncomeActivity.this) {
             @Override
             public void onSwipeDown() {
                 super.onSwipeDown();
@@ -148,13 +140,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
             }
 
         });
-        layoutOverlap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                layoutPopup.setVisibility(View.INVISIBLE);
-                layoutOverlap.setVisibility(View.INVISIBLE);
-            }
-        });
+
         txtDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,9 +153,9 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
                 showTimePickerDialog();
             }
         });
-        ViewPagerTabLayout demoFragment = new ViewPagerTabLayout(getSupportFragmentManager(),
+        ViewPagerTabLayoutInAddEditScreen viewPagerTabLayoutInAddEditScreen = new ViewPagerTabLayoutInAddEditScreen(getSupportFragmentManager(),
                 FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        viewPager.setAdapter(demoFragment);
+        viewPager.setAdapter(viewPagerTabLayoutInAddEditScreen);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#2497F3"));
         tabLayout.setSelectedTabIndicatorHeight((int) (2 * getResources().getDisplayMetrics().density));
@@ -222,7 +208,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
                     AM_PM = "PM";
                 }
 
-                txtTime.setText(hourOfDay + ":" + String.format("%02d",minute) + " " + AM_PM);
+                txtTime.setText(hourOfDay + ":" + String.format("%02d", minute) + " " + AM_PM);
                 lastSelectedHour = hourOfDay;
                 lastSelectedMinute = minute;
             }
@@ -267,7 +253,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
 
 
         this.txtDate.setText(date);
-        txtTime.setText(this.lastSelectedHour + ":" + String.format("%02d",this.lastSelectedMinute) + " " + AM_PM);
+        txtTime.setText(this.lastSelectedHour + ":" + String.format("%02d", this.lastSelectedMinute) + " " + AM_PM);
 
 
     }
