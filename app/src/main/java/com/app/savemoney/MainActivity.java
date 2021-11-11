@@ -147,8 +147,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("121", "get category");
                 Log.d("122", String.valueOf(value.size()));
                 listCategory.putAll(value);
-
             }
+
         });
 
 
@@ -188,9 +188,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickAbc(View view) {
         // Write a message to the database
-        Intent intentBtnLogin = new Intent(MainActivity.this, AddExpenseScreenActivity.class);
+        Intent intentBtnLogin = new Intent(MainActivity.this, AddEditExpenseIncomeActivity.class);
         startActivity(intentBtnLogin);
-
+//        finish();
 //        Category a = new Category(key, String.valueOf(i++), "das", "0");
 //
 //        CategoryDao cateDao = new CategoryDao();

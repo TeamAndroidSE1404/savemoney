@@ -201,6 +201,7 @@
                                     android:text="Note" />
 
                                 <EditText
+                                    android:id="@+id/txt_decription"
                                     android:layout_width="fill_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginTop="5dp"

@@ -44,25 +44,10 @@ public class CategoryDao {
             }
         });
 
-/*
-        List<Category> result = new ArrayList<>();
+    }
 
-        categoryRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    Category cate = snapshot.getValue(Category.class);
-                    result.add(cate);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-*/
-//        return result;
+    public DatabaseReference getCateRef() {
+        return cateRef;
     }
 
     public void addCategory(Category cate) {
