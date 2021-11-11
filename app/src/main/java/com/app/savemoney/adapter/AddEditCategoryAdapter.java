@@ -1,6 +1,7 @@
 package com.app.savemoney.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.savemoney.AddEditCategoryActivity;
 import com.app.savemoney.R;
+import com.app.savemoney.callbacks.OnImageClickListener;
 import com.app.savemoney.model.Category;
 
 import java.util.List;
@@ -23,10 +26,12 @@ public class AddEditCategoryAdapter extends RecyclerView.Adapter<AddEditCategory
     private AddEditCategoryAdapter.ImageViewHolder imageViewHolder;
     private int[] images;
     public Context context;
+    private OnImageClickListener onImageClickListener;
 
-    public AddEditCategoryAdapter(Context context, int[] images) {
+    public AddEditCategoryAdapter(Context context, int[] images, OnImageClickListener onImageClickListener) {
         this.context = context;
         this.images = images;
+        this.onImageClickListener = onImageClickListener;
     }
 
     @Override
@@ -43,14 +48,14 @@ public class AddEditCategoryAdapter extends RecyclerView.Adapter<AddEditCategory
 
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
+        //abxc
         int imageId = images[position];
         String imageName = iconName[position];
         holder.ivCategoryImage.setImageResource(imageId);
         holder.ivCategoryImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.ivIcon.setImageResource(imageId);
-                holder.txtIconName.setText(imageName);
+                onImageClickListener.onImageClick(imageId, imageName);
             }
         });
     }

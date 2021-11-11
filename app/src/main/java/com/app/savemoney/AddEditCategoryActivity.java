@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,19 +17,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.savemoney.adapter.AddEditCategoryAdapter;
 import com.app.savemoney.adapter.AddEditExpenseIncomeAdapter;
+import com.app.savemoney.callbacks.OnImageClickListener;
 import com.app.savemoney.model.Category;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddEditCategoryActivity extends AppCompatActivity {
+public class AddEditCategoryActivity extends AppCompatActivity implements OnImageClickListener {
 
     private AddEditCategoryAdapter addEditCategoryAdapter;
     private RecyclerView recyclerView;
     private List<Category> categoryList;
-    private ImageView btnCheckMark, btnBackHomePage;
+    private ImageView btnCheckMark, btnBackHomePage, imageIcon;
     private EditText edtCateName;
-
+    private TextView nameIcon;
+    private OnImageClickListener onImageClickListener;
     private int[] images = {R.drawable.ic_game, R.drawable.ic_pencil_card, R.drawable.ic_remove_category,
             R.drawable.ic_gear_setting, R.drawable.ic_pencil_card, R.drawable.ic_pencil_card,
             R.drawable.ic_pencil_card,R.drawable.ic_pencil_card, R.drawable.ic_pencil_card, R.drawable.ic_pencil_card,
@@ -44,6 +47,9 @@ public class AddEditCategoryActivity extends AppCompatActivity {
         btnCheckMark = findViewById(R.id.ic_check_mark);
         btnBackHomePage = findViewById(R.id.icon_back_category_setting);
         edtCateName = findViewById(R.id.edt_cate_name);
+        imageIcon = findViewById(R.id.iv_icon_in_add_screen);
+        nameIcon = findViewById(R.id.txt_icon_name);
+
         String categoryId = getIntent().getStringExtra("categoryId");
         Toast.makeText(AddEditCategoryActivity.this, categoryId, Toast.LENGTH_SHORT).show();
         btnCheckMark.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +72,14 @@ public class AddEditCategoryActivity extends AppCompatActivity {
         try {
             recyclerView = findViewById(R.id.rv_list_icon);
 
-            addEditCategoryAdapter = new AddEditCategoryAdapter(this, images);
+            addEditCategoryAdapter = new AddEditCategoryAdapter(this, images, new OnImageClickListener() {
+                @Override
+                public void onImageClick(int imageId, String imageName) {
+                    imageIcon.setImageResource(imageId);
+                    nameIcon.setText(imageName);
+                    Toast.makeText(AddEditCategoryActivity.this, imageName, Toast.LENGTH_SHORT).show();
+                }
+            });
 
             LinearLayoutManager linearLayoutManager = new GridLayoutManager(this, 5);
             recyclerView.setHasFixedSize(true);
@@ -79,4 +92,8 @@ public class AddEditCategoryActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onImageClick(int imageId, String imageName) {
+
+    }
 }
