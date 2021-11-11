@@ -10,4 +10,5 @@
     <color name="blue">#2497F3</color>
     <color name="gray">#C4C4C4</color>
     <color name="hoverGray">#BEBEBE</color>
+    <color name="grayDifferent">#F8ECEC</color>
 </resources>

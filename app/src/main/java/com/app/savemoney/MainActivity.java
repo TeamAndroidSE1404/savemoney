@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sp1 = this.getSharedPreferences("Login", MODE_PRIVATE);
 
-        userUid = sp1.getString("userUid", null);
+        userUid = "-Mo8aySfeG6bFZReOovT";
 
 //        Log.d("1112", unm);
 
