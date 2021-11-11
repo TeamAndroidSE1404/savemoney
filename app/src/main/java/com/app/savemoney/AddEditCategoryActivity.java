@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +28,14 @@ public class AddEditCategoryActivity extends AppCompatActivity {
     private List<Category> categoryList;
     private ImageView btnCheckMark, btnBackHomePage;
     private EditText edtCateName;
+
+    private int[] images = {R.drawable.ic_game, R.drawable.ic_pencil_card, R.drawable.ic_remove_category,
+            R.drawable.ic_gear_setting, R.drawable.ic_pencil_card, R.drawable.ic_pencil_card,
+            R.drawable.ic_pencil_card,R.drawable.ic_pencil_card, R.drawable.ic_pencil_card, R.drawable.ic_pencil_card,
+            R.drawable.ic_game, R.drawable.ic_pencil_card, R.drawable.ic_remove_category,
+            R.drawable.ic_gear_setting, R.drawable.ic_pencil_card, R.drawable.ic_pencil_card,
+            R.drawable.ic_pencil_card,R.drawable.ic_pencil_card, R.drawable.ic_pencil_card, R.drawable.ic_pencil_card};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +63,13 @@ public class AddEditCategoryActivity extends AppCompatActivity {
             }
         });
 
-
         try {
             recyclerView = findViewById(R.id.rv_list_icon);
 
-            categoryList = new ArrayList<>();
-            for (int i = 1; i <= 20; i++) {
-                categoryList.add(new Category(""));
-            }
-            addEditCategoryAdapter = new AddEditCategoryAdapter(this);
+            addEditCategoryAdapter = new AddEditCategoryAdapter(this, images);
 
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            LinearLayoutManager linearLayoutManager = new GridLayoutManager(this, 5);
+            recyclerView.setHasFixedSize(true);
 
             recyclerView.setAdapter(addEditCategoryAdapter);
             recyclerView.setLayoutManager(linearLayoutManager);

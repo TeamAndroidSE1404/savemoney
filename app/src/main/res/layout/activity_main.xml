@@ -97,8 +97,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Menu"
-            android:onClick="testClick"
-
             />
 
         <Button
@@ -111,7 +109,6 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="clickXyz"
             android:text="Category" />
     </LinearLayout>
 

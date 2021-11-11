@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String userUid;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -199,8 +200,6 @@ public class MainActivity extends AppCompatActivity {
 //        for(Category i:tests){
 //            Log.d("XYZ", i.getCategoryName());
 //        }
-
-
     }
 
 
