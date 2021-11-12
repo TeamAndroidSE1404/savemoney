@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.savemoney.R;
+import com.app.savemoney.common.CommonIcon;
 import com.app.savemoney.model.Category;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class AddEditExpenseIncomeAdapter extends RecyclerView.Adapter<AddEditExp
         Category category = categoriesList.get(position);
         // Set item views based on your views and data model
         holder.txtCategoryName.setText(category.getCategoryName());
-        holder.ivCategoryImage.setImageResource(R.drawable.ic_game);
+        holder.ivCategoryImage.setImageDrawable(CommonIcon.getIcon(context, category.getIcon()));
     }
 
     @Override
