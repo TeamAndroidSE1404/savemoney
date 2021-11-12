@@ -1,6 +1,7 @@
 package com.app.savemoney.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,62 +10,72 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.savemoney.AddEditCategoryActivity;
 import com.app.savemoney.R;
+import com.app.savemoney.callbacks.OnImageClickListener;
 import com.app.savemoney.model.Category;
 
 import java.util.List;
 
-public class AddEditCategoryAdapter extends RecyclerView.Adapter<AddEditCategoryAdapter.ViewHolder> {
+public class AddEditCategoryAdapter extends RecyclerView.Adapter<AddEditCategoryAdapter.ImageViewHolder> {
 
-    private AddEditCategoryAdapter.ViewHolder viewHolder;
-    private Context context;
+    private String[] iconName = {"icon_name_1", "icon_name_2", "icon_name_3", "icon_name_4",
+            "icon_name_5", "icon_name_6", "icon_name_7", "icon_name_8", "icon_name_9",
+            "icon_name_10", "icon_name_11", "icon_name_12", "icon_name_13", "icon_name_14", "icon_name_15",
+            "icon_name_16", "icon_name_17", "icon_name_18", "icon_name_19", "icon_name_20"};
+    private AddEditCategoryAdapter.ImageViewHolder imageViewHolder;
+    private int[] images;
+    public Context context;
+    private OnImageClickListener onImageClickListener;
 
-    public AddEditCategoryAdapter(Context context) {
+    public AddEditCategoryAdapter(Context context, int[] images, OnImageClickListener onImageClickListener) {
         this.context = context;
+        this.images = images;
+        this.onImageClickListener = onImageClickListener;
     }
 
     @Override
-    public AddEditCategoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AddEditCategoryAdapter.ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View categoryView =
                 inflater.inflate(R.layout.activity_icon_list_rv, parent, false);
 
-        viewHolder = new AddEditCategoryAdapter.ViewHolder(context, categoryView);
-        return viewHolder;
+        imageViewHolder = new AddEditCategoryAdapter.ImageViewHolder(context, categoryView);
+        return imageViewHolder;
 
     }
 
     @Override
-    public void onBindViewHolder(AddEditCategoryAdapter.ViewHolder holder, int position) {
-        holder.ivCategoryImage1.setImageResource(R.drawable.ic_game);
-        holder.ivCategoryImage2.setImageResource(R.drawable.ic_game);
-        holder.ivCategoryImage3.setImageResource(R.drawable.ic_game);
-        holder.ivCategoryImage4.setImageResource(R.drawable.ic_game);
-        holder.ivCategoryImage5.setImageResource(R.drawable.ic_game);
+    public void onBindViewHolder(ImageViewHolder holder, int position) {
+        //abxc
+        int imageId = images[position];
+        String imageName = iconName[position];
+        holder.ivCategoryImage.setImageResource(imageId);
+        holder.ivCategoryImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onImageClickListener.onImageClick(imageId, imageName);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return images.length;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView ivCategoryImage1;
-        public ImageView ivCategoryImage2;
-        public ImageView ivCategoryImage3;
-        public ImageView ivCategoryImage4;
-        public ImageView ivCategoryImage5;
-
+    public static class ImageViewHolder extends RecyclerView.ViewHolder {
+        public ImageView ivCategoryImage;
+        public ImageView ivIcon;
+        public TextView txtIconName;
         public Context context;
 
-        public ViewHolder(Context context, View itemView) {
+        public ImageViewHolder(Context context, View itemView) {
             super(itemView);
-            ivCategoryImage1 = (ImageView) itemView.findViewById(R.id.iv_category_setting_name_1);
-            ivCategoryImage2 = (ImageView) itemView.findViewById(R.id.iv_category_setting_name_2);
-            ivCategoryImage3 = (ImageView) itemView.findViewById(R.id.iv_category_setting_name_3);
-            ivCategoryImage4 = (ImageView) itemView.findViewById(R.id.iv_category_setting_name_4);
-            ivCategoryImage5 = (ImageView) itemView.findViewById(R.id.iv_category_setting_name_5);
+            ivCategoryImage = (ImageView) itemView.findViewById(R.id.iv_category_setting_name);
+            ivIcon = (ImageView) itemView.findViewById(R.id.iv_icon_in_add_screen) ;
+            txtIconName = (TextView) itemView.findViewById(R.id.txt_icon_name);
             this.context = context;
         }
     }

@@ -37,16 +37,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddEditCategoryActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-
-                <category android:name="android.intent.category.LAUNCHER" />
-
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".LoginScreenActivity"
             android:exported="true">
 
@@ -82,20 +72,21 @@
             android:windowSoftInputMode="adjustResize">
         </activity>
         <activity
-            android:name=".IconListRVScreenActivity"
+            android:name=".AddEditCategoryActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
-        <activity
-            android:name=".MainScreenActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustPan" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
 
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainScreenActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+
         </activity>
         <activity
             android:name=".MenuScreenActivity"
