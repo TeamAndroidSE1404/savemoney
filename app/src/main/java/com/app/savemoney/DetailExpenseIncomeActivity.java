@@ -89,7 +89,22 @@ public class DetailExpenseIncomeActivity extends AppCompatActivity {
         btnEditExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
+                DateFormat formatterTime = new SimpleDateFormat("HH:mm");
+                String dateStr = formatterDate.format(expense.getDate());
+                String timeStr = formatterTime.format(expense.getDate());
+
+//                iconCategory.setImageDrawable(CommonIcon.getIcon(, category.getIcon()));
+
                 Intent intent = new Intent(DetailExpenseIncomeActivity.this, AddEditExpenseIncomeActivity.class);
+                Bundle mBundle = new Bundle();
+                mBundle.putString("UPDATE", "1");
+                mBundle.putString("dateUpdate", dateStr);
+                mBundle.putString("timeUpdate", timeStr);
+                mBundle.putString("noteUpdate", expense.getDescription());
+                mBundle.putString("priceUpdate", String.valueOf(expense.getPrice()));
+                mBundle.putString("iconUpdate", category.getIcon());
+                intent.putExtras(mBundle);
                 startActivity(intent);
             }
         });
