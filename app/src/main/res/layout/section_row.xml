@@ -21,7 +21,9 @@
                 android:id="@+id/txtDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
                 android:text="Textview"
+                android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
@@ -36,8 +38,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="Chi Tiêu: "
-
+                android:textSize="12dp"
                 android:gravity="center"
+                android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/txtDate"
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
@@ -49,9 +52,11 @@
                 android:id="@+id/txtIncome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity=""
+                android:gravity="center"
                 android:text="Thu nhập: "
                 android:textColor="@color/blue"
+                android:textSize="12dp"
+                android:visibility="invisible"
 
                 app:layout_constraintStart_toEndOf="@+id/txtSpending"
                 app:layout_constraintTop_toTopOf="parent" />

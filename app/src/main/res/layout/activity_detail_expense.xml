@@ -48,12 +48,6 @@
                     android:textSize="20dp" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                app:srcCompat="@drawable/ic_setting" />
         </LinearLayout>
     </LinearLayout>
 

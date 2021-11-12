@@ -82,26 +82,14 @@
                         android:ems="10"
                         android:gravity="end"
                         android:inputType="numberDecimal"
-                        android:maxLength="14"
+                        android:maxLength="13"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         android:text="0"
                         android:textColor="@android:color/white"
-                        android:textSize="30dp" />
+                        android:textSize="35dp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:background="@null"
-                        android:ems="10"
-                        android:gravity="end"
-                        android:inputType="numberDecimal"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:text="0="
-                        android:textColor="@android:color/white"
-                        android:textSize="15dp" />
+
 
                 </LinearLayout>
 
@@ -112,6 +100,7 @@
                 android:layout_height="0dp"
                 android:layout_gravity="center"
                 android:layout_weight="15"
+
                 android:gravity="top"
                 android:orientation="vertical">
 
@@ -239,6 +228,27 @@
                         android:backgroundTint="#2497F3"
                         android:text="New Expense"
                         android:textColor="@color/white" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <Button
+                        android:id="@+id/btn_delete_expense"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:backgroundTint="#2497F3"
+                        android:visibility="invisible"
+                        android:text="Delete Expense"
+                        android:textColor="@color/white" />
+
                 </LinearLayout>
             </LinearLayout>
 

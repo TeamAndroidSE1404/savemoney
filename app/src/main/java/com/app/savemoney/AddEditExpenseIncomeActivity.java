@@ -51,27 +51,40 @@ import java.util.Map;
 public class AddEditExpenseIncomeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private Map<String, Category> categoryList;
-    private AddEditExpenseIncomeAdapter addEditExpenseIncomeAdapter;
-    private RecyclerView recyclerView;
     private LinearLayout layoutPopup, layoutOverlap;
 
     private TextView txtDate, txtTime, txtCategoryId;
-    private ImageView imgBack, imgSetting;
+    private ImageView imgBack;
     private EditText txtMoney, txtDecription;
 
-    private Button btnAddExpense;
+    private Button btnAddExpense, btnDeleteExpense;
     private int lastSelectedHour = -1;
     private int lastSelectedMinute = -1;
     private String current = "";
     private CategoryDao categoryDao;
     private ExpenseDao expenseDao;
-    private String userUid;
+    private String userUid, updateFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expense);
+
+        SharedPreferences sp1 = this.getSharedPreferences("Login", MODE_PRIVATE);
+
+        userUid = sp1.getString("userUid", null);
+
+        Intent intent = new Intent();
+        updateFlag = intent.getStringExtra("UPDATE");
+
+        setInit();
+        setListenerInit();
+
+        setDateTimeInit();
+
+    }
+
+    private void setInit(){
         tabLayout = findViewById(R.id.tab_layout_in_add_edit_screen);
         viewPager = findViewById(R.id.view_pager_in_add_edit_screen);
         txtDate = findViewById(R.id.txt_date);
@@ -85,14 +98,12 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
         txtCategoryId = findViewById(R.id.txt_category_id);
 
         txtMoney = findViewById(R.id.txt_money);
-        SharedPreferences sp1 = this.getSharedPreferences("Login", MODE_PRIVATE);
 
-        userUid = sp1.getString("userUid", null);
-
+        btnDeleteExpense = findViewById(R.id.btn_delete_expense);
         expenseDao = new ExpenseDao(userUid);
+    }
 
-        setDateTimeInit();
-
+    private void setListenerInit(){
         txtMoney.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
@@ -124,7 +135,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
                         String cleanString = s.toString().replaceAll("[$,.]", "");
 
                         double parsed = Double.parseDouble(cleanString);
-                        NumberFormat formatter = new DecimalFormat("##,###,###,###");
+                        NumberFormat formatter = new DecimalFormat("#,###,###,###");
                         String formatted = formatter.format(parsed);
 
                         current = formatted;
@@ -218,22 +229,21 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
         tabLayout.setSelectedTabIndicatorHeight((int) (2 * getResources().getDisplayMetrics().density));
         tabLayout.setTabTextColors(Color.parseColor("#404040"), Color.parseColor("#2497F3"));
         try {
-//            recyclerView = findViewById(R.id.rv_categories);
-
-//            categoryList = new ArrayList<>();
-//            for (int i = 1; i <= 20; i++) {
-//                categoryList.add(new Category("Thue nha"));
-//            }
-//            addEditExpenseIncomeAdapter = new AddEditExpenseIncomeAdapter(categoryList, this);
-
-//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-
-//            recyclerView.setAdapter(addEditExpenseIncomeAdapter);
-//            recyclerView.setLayoutManager(linearLayoutManager);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
+
+
+
+    private void updateThread(){
+        this.btnAddExpense.setText("Update Expense");
+        this.btnDeleteExpense.setVisibility(View.VISIBLE);
+
+
+
+    }
+
 
     public static String currencyFormat(String amount) {
         DecimalFormat formatter = new DecimalFormat("##,###,###,###");

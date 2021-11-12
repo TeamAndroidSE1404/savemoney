@@ -68,12 +68,19 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
                 } else if (CommonCodeValues.SPENDING.equals(e.getCate().getClassify())) {
                     spend += e.getPrice();
                 }
-
         }
 
-        holder.txtIncome.setText(income != 0 ? "+" + String.valueOf(ConvertUtils.addComaPrice(income)) : "0");
+        if(income > 0 ){
+            holder.txtIncome.setVisibility(View.VISIBLE);
+            String in = "Thu nhập: ";
+            holder.txtIncome.setText(in+"+" + ConvertUtils.addComaPrice(income));
+        }
 
-        holder.txtSpending.setText(spend != 0 ? "-" + String.valueOf(ConvertUtils.addComaPrice(spend)) : "0");
+        if(spend > 0 ){
+            holder.txtSpending.setVisibility(View.VISIBLE);
+            String in = "Chi tiêu: ";
+            holder.txtSpending.setText(in+"-" + ConvertUtils.addComaPrice(spend));
+        }
 
         holder.txtDate.setText(DateUtils.dateToString(list.get(0).getDate(), CommonCodeValues.DATE_DD_MM_YYYY));
 

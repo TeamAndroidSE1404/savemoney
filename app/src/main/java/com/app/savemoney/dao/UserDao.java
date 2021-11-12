@@ -60,9 +60,7 @@ public class UserDao {
         user.setUid(key);
         userRef.child(key).setValue(user.toMap());
 
-
        String cateKey = userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).push().getKey();
-
 
         Category cate = new Category(cateKey, "Cate1", "icon1", CommonCodeValues.INCOME, "0");
 
@@ -84,7 +82,7 @@ public class UserDao {
                 User loginUser = null;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     HashMap<String, Object> userMap = (HashMap<String, Object>) dataSnapshot.getValue();
-                    String emailDb = userMap.get(User.EMAIL).toString();
+                    String emailDb = (String)userMap.get(User.EMAIL);
 
                     if (email.equalsIgnoreCase(emailDb)) {
                         if (password.equals(userMap.get(User.PASSWORD).toString())) {

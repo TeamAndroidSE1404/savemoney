@@ -135,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
+
+
                 getListExpense(expenseList1);
                 handleBalance(expenseList1);
                 mainRecyclerViewAdapter.changedData(tempMap);
@@ -154,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         Date convertStrToDate = null;
         try {
             convertStrToDate = new SimpleDateFormat("yyyy-MM").parse(curentMonthStr);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         int curentMonth = convertStrToDate.getMonth();
@@ -178,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
         txtIncomeValue.setText(Double.toString(income));
         txtExpenseValue.setText(Double.toString(expense));
         txtBalanceValue.setText(Double.toString(balance));
+
     }
 
     public void getCategory() {
@@ -188,6 +191,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("121", "get category");
                 Log.d("122", String.valueOf(value.size()));
                 listCategory.putAll(value);
+            }
+
+            @Override
+            public void onCallbackGetOneCategory(Category value) {
+
             }
 
         });
@@ -214,6 +222,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intentMenu = new Intent(MainActivity.this, MenuScreenActivity.class);
+                startActivity(intentMenu);
+            }
+        });
+
+        imgAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentMenu = new Intent(MainActivity.this, AddEditExpenseIncomeActivity.class);
                 startActivity(intentMenu);
             }
         });
@@ -244,22 +260,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-    }
-
-
-    public void clickAbc(View view) {
-        // Write a message to the database
-        Intent intentBtnLogin = new Intent(MainActivity.this, AddEditExpenseIncomeActivity.class);
-        startActivity(intentBtnLogin);
-//        finish();
-//        Category a = new Category(key, String.valueOf(i++), "das", "0");
-//
-//        CategoryDao cateDao = new CategoryDao();
-//        List<Category> tests = cateDao.getAllCate();
-//
-//        for(Category i:tests){
-//            Log.d("XYZ", i.getCategoryName());
-//        }
     }
 
 

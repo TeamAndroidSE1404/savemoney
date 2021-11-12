@@ -1,6 +1,7 @@
 package com.app.savemoney.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.savemoney.R;
 import com.app.savemoney.common.CommonCodeValues;
 import com.app.savemoney.common.CommonIcon;
+import com.app.savemoney.common.ConvertUtils;
 import com.app.savemoney.model.Expense;
 
 import java.util.List;
@@ -44,18 +46,16 @@ public class ChildRecyclerViewAdapter extends RecyclerView.Adapter<ChildRecycler
         Expense item = items.get(position);
 
         holder.icCategory.setImageDrawable(CommonIcon.getIcon(context, item.getCate().getIcon()));
-//        holder.icCategory.getLayoutParams().height = 60;
-//        holder.icCategory.getLayoutParams().width = 60;
 
         holder.txtNameItem.setText(item.getCate().getCategoryName());
 
 
-        String price = String.valueOf(item.getPrice());
+        double price = item.getPrice();
         if(CommonCodeValues.INCOME.equals(item.getCate().getClassify())){
-
-            holder.txtPrice.setText("+"+price);
+            holder.txtPrice.setText("+"+ ConvertUtils.addComaPrice(price));
+            holder.txtPrice.setTextColor(Color.parseColor("#2497F3"));
         }else if(CommonCodeValues.SPENDING.equals(item.getCate().getClassify())){
-            holder.txtPrice.setText("-"+price);
+            holder.txtPrice.setText("-"+ConvertUtils.addComaPrice(price));
         }
 
 
