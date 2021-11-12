@@ -101,5 +101,16 @@ public class Expense {
 
     }
 
+    public void toObject(HashMap<String, Object> input){
+        this.uid = (String) input.get(UID);
+        this.description = (String)input.get(DESCRIPTION);
+        this.date = DateUtils.StringToDate(((String)input.get(DATE)), CommonCodeValues.DATE_DDMMYYYY_HHMM);
+
+        this.cate = null;
+
+        this.price = Double.valueOf((Long)input.get(PRICE));
+
+    }
+
 
 }

@@ -2,6 +2,7 @@ package com.app.savemoney.dao;
 
 import androidx.annotation.NonNull;
 
+import com.app.savemoney.callbacks.ExpenseCallBack;
 import com.app.savemoney.common.CommonCodeValues;
 import com.app.savemoney.model.Expense;
 import com.google.firebase.database.DataSnapshot;
@@ -10,6 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class ExpenseDao {
@@ -18,6 +20,33 @@ public class ExpenseDao {
 
     public ExpenseDao(String userUid) {
         expenseRef = FirebaseDatabase.getInstance(CommonCodeValues.INSTANCE).getReference(CommonCodeValues.DB_USERS).child(userUid).child(CommonCodeValues.DB_EXPENSES);
+    }
+
+    public void getExpenseByKey(String key, ExpenseCallBack expenseCallBack) {
+
+        expenseRef.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+
+                    HashMap<String, Object> data = (HashMap<String, Object>) snapshot.getValue();
+
+                    Expense ex = new Expense();
+                    ex.toObject(data);
+
+                    expenseCallBack.onCallbackGetOneExpense(ex);
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
     public void addExpense(Expense expense) {

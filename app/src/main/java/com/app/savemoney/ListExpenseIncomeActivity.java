@@ -21,7 +21,7 @@ public class ListExpenseIncomeActivity extends AppCompatActivity{
     private ViewPager viewPager;
     private LinearLayout btnAddCategory;
     private ImageView btnBackHomePage;
-    private int pos;
+    private int pos = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +38,7 @@ public class ListExpenseIncomeActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ListExpenseIncomeActivity.this, AddEditCategoryActivity.class);
+                intent.putExtra(AddEditCategoryActivity.CLASSIFY_CATE, String.valueOf(pos));
                 startActivity(intent);
             }
         });
@@ -63,12 +64,10 @@ public class ListExpenseIncomeActivity extends AppCompatActivity{
             public void onTabSelected(TabLayout.Tab tab) {
                 switch(tab.getPosition()) {
                     case 0:
-                        Toast.makeText(ListExpenseIncomeActivity.this, String.valueOf(0), Toast.LENGTH_SHORT).show();
-
+                        pos = 0;
                         break;
                     case 1:
-                        Toast.makeText(ListExpenseIncomeActivity.this, String.valueOf(1), Toast.LENGTH_SHORT).show();
-
+                        pos = 1;
                         break;
                 }
             }

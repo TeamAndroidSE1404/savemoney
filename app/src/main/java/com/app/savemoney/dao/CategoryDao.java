@@ -46,6 +46,26 @@ public class CategoryDao {
 
     }
 
+    public void getCateByKey(String key, CategoryCallBack categoryCallBack){
+
+        cateRef.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    Category cate = snapshot.getValue(Category.class);
+                    categoryCallBack.onCallbackGetOneCategory(cate);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
     public DatabaseReference getCateRef() {
         return cateRef;
     }
