@@ -70,7 +70,6 @@ public class ListExpenseIncomeAdapter extends RecyclerView.Adapter<ListExpenseIn
         Category category = categoriesList.get(position);
         holder.txtCategoryName.setText(category.getCategoryName());
         holder.ivCategoryImage.setImageResource(R.drawable.ic_game);
-        holder.ivEdit.setImageResource(R.drawable.ic_pencil_rv);
         holder.ivRemove.setImageResource(R.drawable.ic_remove_category);
         holder.ivRemove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,14 +89,6 @@ public class ListExpenseIncomeAdapter extends RecyclerView.Adapter<ListExpenseIn
                             }
                         }).show();
 
-            }
-        });
-        holder.ivEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AddEditCategoryActivity.class);
-                intent.putExtra("categoryId", 1);
-                context.startActivity(intent);
             }
         });
 
@@ -131,7 +122,7 @@ public class ListExpenseIncomeAdapter extends RecyclerView.Adapter<ListExpenseIn
             super(itemView);
             ivCategoryImage = (ImageView) itemView.findViewById(R.id.iv_category_setting);
             txtCategoryName = (TextView) itemView.findViewById(R.id.txt_category_setting_name);
-            ivEdit = (ImageView) itemView.findViewById(R.id.iv_category_setting_edit);
+//            ivEdit = (ImageView) itemView.findViewById(R.id.iv_category_setting_edit);
             ivRemove = (ImageView) itemView.findViewById(R.id.iv_category_setting_remove);
 
             this.context = context;
