@@ -3,19 +3,23 @@ package com.app.savemoney.adapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.savemoney.AddEditCategoryActivity;
 import com.app.savemoney.ListExpenseIncomeActivity;
 import com.app.savemoney.R;
+import com.app.savemoney.callbacks.ListCategoryFragmentCallBack;
 import com.app.savemoney.model.Category;
 
 import java.util.List;
@@ -26,10 +30,27 @@ public class ListExpenseIncomeAdapter extends RecyclerView.Adapter<ListExpenseIn
     private List<Category> categoriesList;
     private Context context;
     private AlertDialog.Builder builder;
+    private ListCategoryFragmentCallBack onSelectCategoryListener;
 
     public ListExpenseIncomeAdapter(List<Category> categoriesList, Context context) {
         this.categoriesList = categoriesList;
         this.context = context;
+
+    }
+
+    public ListExpenseIncomeAdapter(List<Category> categoriesList, Context context,ListCategoryFragmentCallBack onSelectCategoryListener) {
+        this.categoriesList = categoriesList;
+        this.context = context;
+
+
+        this.onSelectCategoryListener = onSelectCategoryListener;
+
+    }
+
+
+    public void changedData(List<Category> list) {
+        this.categoriesList = list;
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -76,9 +97,21 @@ public class ListExpenseIncomeAdapter extends RecyclerView.Adapter<ListExpenseIn
         holder.ivEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent (view.getContext(), AddEditCategoryActivity.class);
+                Intent intent = new Intent(view.getContext(), AddEditCategoryActivity.class);
                 intent.putExtra("categoryId", 1);
                 context.startActivity(intent);
+            }
+        });
+
+        holder.ivCategoryImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("555", category.getUid());
+
+
+                onSelectCategoryListener.onClickCategoryListener(category);
+
+
             }
         });
     }
@@ -102,10 +135,13 @@ public class ListExpenseIncomeAdapter extends RecyclerView.Adapter<ListExpenseIn
             txtCategoryName = (TextView) itemView.findViewById(R.id.txt_category_setting_name);
             ivEdit = (ImageView) itemView.findViewById(R.id.iv_category_setting_edit);
             ivRemove = (ImageView) itemView.findViewById(R.id.iv_category_setting_remove);
+
             this.context = context;
         }
 
     }
+
+
 
 
 }
