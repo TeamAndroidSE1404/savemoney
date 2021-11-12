@@ -53,6 +53,7 @@
             app:srcCompat="@drawable/profile" />
 
         <TextView
+            android:id="@+id/profile_mainname"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"

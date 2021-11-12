@@ -275,7 +275,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
                     AM_PM = "PM";
                 }
 
-                txtTime.setText(hourOfDay + ":" + String.format("%02d", minute) + " " + AM_PM);
+                txtTime.setText(String.format("%02d",hourOfDay) + ":" + String.format("%02d", minute) + " " + AM_PM);
                 lastSelectedHour = hourOfDay;
                 lastSelectedMinute = minute;
             }
@@ -320,7 +320,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
 
 
         this.txtDate.setText(date);
-        txtTime.setText(this.lastSelectedHour + ":" + String.format("%02d", this.lastSelectedMinute) + " " + AM_PM);
+        txtTime.setText(String.format("%02d", this.lastSelectedHour) + ":" + String.format("%02d", this.lastSelectedMinute) + " " + AM_PM);
 
 
     }

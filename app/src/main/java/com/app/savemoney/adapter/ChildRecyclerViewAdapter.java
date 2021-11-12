@@ -1,6 +1,7 @@
 package com.app.savemoney.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.savemoney.DetailExpenseIncomeActivity;
 import com.app.savemoney.R;
 import com.app.savemoney.common.CommonCodeValues;
 import com.app.savemoney.common.CommonIcon;
@@ -58,7 +60,16 @@ public class ChildRecyclerViewAdapter extends RecyclerView.Adapter<ChildRecycler
             holder.txtPrice.setText("-"+ConvertUtils.addComaPrice(price));
         }
 
+        holder.icCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailExpenseIncomeActivity.class);
+                intent.putExtra("CATEGORY", item.getCate().getUid());
+                intent.putExtra("EXPENSE", item.getUid());
+                context.startActivity(intent);
 
+            }
+        });
 
     }
 

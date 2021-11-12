@@ -60,11 +60,22 @@ public class UserDao {
         user.setUid(key);
         userRef.child(key).setValue(user.toMap());
 
+
        String cateKey = userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).push().getKey();
 
         Category cate = new Category(cateKey, "Cate1", "icon1", CommonCodeValues.INCOME, "0");
 
         userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).child(cate.getUid()).setValue(cate.toMap());
+
+
+
+        String cateKey1 = userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).push().getKey();
+
+        Category cate1 = new Category(cateKey1, "Cate1", "icon1", CommonCodeValues.INCOME, "0");
+
+        userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).child(cate1.getUid()).setValue(cate1.toMap());
+
+
 
         String expenseKey = userRef.child(key).child(CommonCodeValues.DB_EXPENSES).push().getKey();
 
