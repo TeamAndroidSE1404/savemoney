@@ -74,17 +74,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imgMenu = findViewById(R.id.img_main_menu);
-        imgAdd = findViewById(R.id.img_main_add);
-        imgCate = findViewById(R.id.img_main_category);
-
-        imgMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentMenu = new Intent(MainActivity.this, MenuScreenActivity.class);
-                startActivity(intentMenu);
-            }
-        });
 
         SharedPreferences sp1 = this.getSharedPreferences("Login", MODE_PRIVATE);
 
@@ -93,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 //        Log.d("1112", unm);
 
         setInit();
+        setClickInit();
         getCategory();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -170,7 +160,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setInit() {
+        imgMenu = findViewById(R.id.img_main_menu);
+        imgAdd = findViewById(R.id.img_main_add);
+        imgCate = findViewById(R.id.img_main_category);
+    }
 
+    private void setClickInit(){
+        imgMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentMenu = new Intent(MainActivity.this, MenuScreenActivity.class);
+                startActivity(intentMenu);
+            }
+        });
     }
 
 
