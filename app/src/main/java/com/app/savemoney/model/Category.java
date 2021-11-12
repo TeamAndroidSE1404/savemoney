@@ -29,6 +29,10 @@ public class Category {
 
     }
 
+    public Category(String uid){
+        this.uid = uid;
+    }
+
     public Category(String uid, String categoryName, String icon, String classify, String disable) {
         this.uid = uid;
         this.categoryName = categoryName;
@@ -44,10 +48,6 @@ public class Category {
 
     public void setUid(String uid) {
         this.uid = uid;
-    }
-
-    public Category(String categoryName) {
-        this.categoryName = categoryName;
     }
 
     public String getCategoryName() {

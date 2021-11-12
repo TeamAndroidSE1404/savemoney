@@ -60,6 +60,13 @@
                     android:onClick="handleShowPopupListCategory"
                     app:srcCompat="@drawable/ic_game" />
 
+                <TextView
+                    android:id="@+id/txt_category_id"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="invisible"
+                    />
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

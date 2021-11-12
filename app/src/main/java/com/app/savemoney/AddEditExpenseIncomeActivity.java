@@ -2,13 +2,12 @@ package com.app.savemoney;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -23,41 +22,51 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.app.savemoney.adapter.AddEditCategoryAdapter;
 import com.app.savemoney.adapter.AddEditExpenseIncomeAdapter;
-import com.app.savemoney.adapter.ViewPagerTabLayout;
-import com.app.savemoney.adapter.ViewPagerTabLayoutInAddEditScreen;
-import com.app.savemoney.common.OnSwipeTouchListener;
-import com.app.savemoney.fragment.ExpenseFragment;
-import com.app.savemoney.model.Category;
-import com.google.android.material.tabs.TabLayout;
 
-import android.content.Intent;
+import com.app.savemoney.adapter.ViewPagerTabLayoutInAddEditScreen;
+
+import com.app.savemoney.callbacks.CategoryCallBack;
+
+import com.app.savemoney.common.CommonCodeValues;
+import com.app.savemoney.common.ConvertUtils;
+import com.app.savemoney.common.DateUtils;
+import com.app.savemoney.common.OnSwipeTouchListener;
+import com.app.savemoney.common.StringUtils;
+import com.app.savemoney.dao.CategoryDao;
+import com.app.savemoney.dao.ExpenseDao;
+import com.app.savemoney.model.Category;
+import com.app.savemoney.model.Expense;
+import com.google.android.material.tabs.TabLayout;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.Date;
+import java.util.Map;
 
 public class AddEditExpenseIncomeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private List<Category> categoryList;
+    private Map<String, Category> categoryList;
     private AddEditExpenseIncomeAdapter addEditExpenseIncomeAdapter;
     private RecyclerView recyclerView;
     private LinearLayout layoutPopup, layoutOverlap;
-    private TextView txtDate, txtTime;
-    private ImageView imgBack;
-    private EditText txtMoney;
+
+    private TextView txtDate, txtTime, txtCategoryId;
+    private ImageView imgBack, imgSetting;
+    private EditText txtMoney, txtDecription;
+
     private Button btnAddExpense;
     private int lastSelectedHour = -1;
     private int lastSelectedMinute = -1;
     private String current = "";
+    private CategoryDao categoryDao;
+    private ExpenseDao expenseDao;
+    private String userUid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +80,16 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
         imgBack = findViewById(R.id.icon_back_add_expense);
         layoutOverlap = findViewById(R.id.background_overlay);
         btnAddExpense = findViewById(R.id.btn_add_expense);
+
+        txtDecription = findViewById(R.id.txt_decription);
+        txtCategoryId = findViewById(R.id.txt_category_id);
+
         txtMoney = findViewById(R.id.txt_money);
+        SharedPreferences sp1 = this.getSharedPreferences("Login", MODE_PRIVATE);
+
+        userUid = sp1.getString("userUid", null);
+
+        expenseDao = new ExpenseDao(userUid);
 
         setDateTimeInit();
 
@@ -121,6 +139,45 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
 
             }
         });
+
+
+        btnAddExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String totalMoney =  txtMoney.getText().toString();
+
+                String categoryId = txtCategoryId.getText().toString();
+
+                String time = txtTime.getText().toString();
+
+                String date = txtDate.getText().toString();
+
+                String decription = txtDecription.toString();
+
+                if(StringUtils.isEmpty(totalMoney)||"0".equals(totalMoney)||StringUtils.isEmpty(categoryId)||StringUtils.isEmpty(time)||StringUtils.isEmpty(date)){
+
+                    Toast.makeText(AddEditExpenseIncomeActivity.this, "Please fill all information", Toast.LENGTH_SHORT).show();
+
+                }else{
+
+                    String ap = time.substring(6,8);
+                    String hour = time.substring(0,2);
+                    String minus = time.substring(3,6);
+
+                    if("PM".equals(ap)){
+                        hour = String.valueOf(Integer.parseInt(hour)+12);
+                    }
+                    String fullTime = date+" "+hour+":"+minus;
+                    Date fullDate = DateUtils.StringToDate(fullTime, CommonCodeValues.DATE_YYYY_MM_DD_HHMM);
+                    Expense expense = new Expense("", decription, fullDate, new Category(categoryId), ConvertUtils.convertStringToDouble(totalMoney));
+                    expenseDao.addExpense(expense);
+
+                    finish();
+                }
+
+            }
+        });
+
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override

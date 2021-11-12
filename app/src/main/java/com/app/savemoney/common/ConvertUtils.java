@@ -40,4 +40,11 @@ public class ConvertUtils {
 
     }
 
+    public static double convertStringToDouble(String number){
+
+        return Double.valueOf(number.replaceAll("\\D",""));
+
+
+    }
+
 }

@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
                 setDataEvent();
             }
-        }, 2000);
+        }, 1000);
 
 
     }
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
         tempMap = new HashMap<>();
 
-        MainRecyclerViewAdapter mainRecyclerViewAdapter = new MainRecyclerViewAdapter(tempMap);
+        MainRecyclerViewAdapter mainRecyclerViewAdapter = new MainRecyclerViewAdapter(getBaseContext(), tempMap);
         recyclerViewExpense = findViewById(R.id.rvMainMenu);
         recyclerViewExpense.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerViewExpense.setAdapter(mainRecyclerViewAdapter);
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void getCategory() {
+    public void getCategory() {
         categoryDao = new CategoryDao(userUid);
         categoryDao.getAllCate(new CategoryCallBack() {
             @Override

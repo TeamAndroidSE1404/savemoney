@@ -1,5 +1,6 @@
 package com.app.savemoney.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.savemoney.R;
+import com.app.savemoney.common.CommonCodeValues;
+import com.app.savemoney.common.CommonIcon;
 import com.app.savemoney.model.Expense;
 
 import java.util.List;
@@ -18,8 +21,11 @@ public class ChildRecyclerViewAdapter extends RecyclerView.Adapter<ChildRecycler
 
     private List<Expense> items;
 
-    public ChildRecyclerViewAdapter(List<Expense> items) {
+    private Context context;
+
+    public ChildRecyclerViewAdapter(Context context, List<Expense> items) {
         this.items = items;
+        this.context = context;
     }
 
     @NonNull
@@ -37,11 +43,19 @@ public class ChildRecyclerViewAdapter extends RecyclerView.Adapter<ChildRecycler
 
         Expense item = items.get(position);
 
+        holder.icCategory.setImageDrawable(CommonIcon.getIcon(context, item.getCate().getIcon()));
+
+
         holder.txtNameItem.setText(item.getCate().getCategoryName());
 
-        holder.txtPrice.setText(String.valueOf(item.getPrice()));
 
+        String price = String.valueOf(item.getPrice());
+        if(CommonCodeValues.INCOME.equals(item.getCate().getClassify())){
 
+            holder.txtPrice.setText("+"+price);
+        }else if(CommonCodeValues.SPENDING.equals(item.getCate().getClassify())){
+            holder.txtPrice.setText("-"+price);
+        }
 
 
 

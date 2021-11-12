@@ -16,9 +16,8 @@ public class ExpenseDao {
 
     private DatabaseReference expenseRef;
 
-
-    public ExpenseDao() {
-        expenseRef = FirebaseDatabase.getInstance(CommonCodeValues.INSTANCE).getReference(CommonCodeValues.DB_EXPENSES);
+    public ExpenseDao(String userUid) {
+        expenseRef = FirebaseDatabase.getInstance(CommonCodeValues.INSTANCE).getReference(CommonCodeValues.DB_USERS).child(userUid).child(CommonCodeValues.DB_EXPENSES);
     }
 
     public void addExpense(Expense expense) {
