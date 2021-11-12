@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.provider.Settings;
 import android.util.Log;
@@ -66,11 +67,24 @@ public class MainActivity extends AppCompatActivity {
 
     private String userUid;
 
+    private ImageView imgMenu, imgAdd, imgCate;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        imgMenu = findViewById(R.id.img_main_menu);
+        imgAdd = findViewById(R.id.img_main_add);
+        imgCate = findViewById(R.id.img_main_category);
+
+        imgMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentMenu = new Intent(MainActivity.this, MenuScreenActivity.class);
+                startActivity(intentMenu);
+            }
+        });
 
         SharedPreferences sp1 = this.getSharedPreferences("Login", MODE_PRIVATE);
 
