@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,6 +22,7 @@ import com.app.savemoney.adapter.ListExpenseIncomeAdapter;
 import com.app.savemoney.adapter.ListExpenseIncomeInAddScreenAdapter;
 import com.app.savemoney.callbacks.ListCategoryFragmentCallBack;
 import com.app.savemoney.common.CommonCodeValues;
+import com.app.savemoney.common.CommonIcon;
 import com.app.savemoney.dao.CategoryDao;
 import com.app.savemoney.model.Category;
 import com.google.firebase.database.DataSnapshot;
@@ -45,12 +48,12 @@ public class ExpenseFragmentInAddEditScreen extends Fragment implements ListCate
     private List<Category> categoryList;
     private String userUid;
     private CategoryDao categoryDao;
-    private EditText decription;
+    private TextView txtCategoryId;
+    private ImageView imgCategory;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public static String index;
 
     public ExpenseFragmentInAddEditScreen() {
     }
@@ -71,17 +74,16 @@ public class ExpenseFragmentInAddEditScreen extends Fragment implements ListCate
         SharedPreferences sp1 = this.getContext().getSharedPreferences("Login", MODE_PRIVATE);
         userUid = sp1.getString("userUid", null);
         categoryDao = new CategoryDao(userUid);
-
+        txtCategoryId = getActivity().findViewById(R.id.txt_category_id);
+        imgCategory = getActivity().findViewById(R.id.iv_category);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+
+
         categoryList = new ArrayList<>();
-        categoryList = new ArrayList<>();
-        for (int i = 1; i <= 20; i++) {
-            categoryList.add(new Category("Thue nha"));
-        }
     }
 
     @Override
@@ -93,24 +95,24 @@ public class ExpenseFragmentInAddEditScreen extends Fragment implements ListCate
         ListExpenseIncomeInAddScreenAdapter listExpenseIncomeInAddScreenAdapter = new ListExpenseIncomeInAddScreenAdapter(categoryList, this.getContext(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(listExpenseIncomeInAddScreenAdapter);
-//        categoryDao.getCateRef().addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                List<Category> list = new ArrayList<>();
-//                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    Category cate = dataSnapshot.getValue(Category.class);
-//                    if("0".equals(cate.getDisable())&& CommonCodeValues.SPENDING.equals(cate.getClassify())){
-//                       list.add(cate);
-//                    }
-//                }
-//                listExpenseIncomeInAddScreenAdapter.changedData(list);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        categoryDao.getCateRef().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Category> list = new ArrayList<>();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Category cate = dataSnapshot.getValue(Category.class);
+                    if("0".equals(cate.getDisable())&& CommonCodeValues.SPENDING.equals(cate.getClassify())){
+                       list.add(cate);
+                    }
+                }
+                listExpenseIncomeInAddScreenAdapter.changedData(list);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         return view;
@@ -119,6 +121,8 @@ public class ExpenseFragmentInAddEditScreen extends Fragment implements ListCate
 
     @Override
     public void onClickCategoryListener(Category data) {
+        txtCategoryId.setText(data.getUid());
+        imgCategory.setImageDrawable(CommonIcon.getIcon(getContext(), data.getIcon()));
         Log.d("666", data.getUid());
     }
 }

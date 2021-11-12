@@ -26,8 +26,11 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     Map<Integer, List<Expense>> expenseList;
 
-    public MainRecyclerViewAdapter(Map<Integer, List<Expense>> expenseList) {
+    private Context context;
+
+    public MainRecyclerViewAdapter(Context context, Map<Integer, List<Expense>> expenseList) {
         this.expenseList = expenseList;
+        this.context = context;
     }
 
     public void changedData(Map<Integer, List<Expense>> expenseList) {
@@ -53,7 +56,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         List<Expense> list = expenseList.get(position);
 
-        ChildRecyclerViewAdapter childRecyclerViewAdapter = new ChildRecyclerViewAdapter(list);
+        ChildRecyclerViewAdapter childRecyclerViewAdapter = new ChildRecyclerViewAdapter(context, list);
 
         holder.childRecyclerView.setAdapter(childRecyclerViewAdapter);
         double income = 0;

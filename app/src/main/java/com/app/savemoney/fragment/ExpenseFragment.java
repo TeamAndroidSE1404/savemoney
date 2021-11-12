@@ -53,7 +53,7 @@ public class ExpenseFragment extends Fragment implements ListCategoryFragmentCal
     private List<Category> categoryList;
     private String userUid;
     private CategoryDao categoryDao;
-    private EditText decription;
+    private EditText txtCategoryId;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;

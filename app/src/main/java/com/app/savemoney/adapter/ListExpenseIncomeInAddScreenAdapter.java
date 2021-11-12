@@ -3,6 +3,7 @@ package com.app.savemoney.adapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.savemoney.AddEditCategoryActivity;
 import com.app.savemoney.R;
 import com.app.savemoney.callbacks.ListCategoryFragmentCallBack;
+import com.app.savemoney.common.CommonIcon;
 import com.app.savemoney.model.Category;
 
 import java.util.List;
@@ -67,7 +69,16 @@ public class ListExpenseIncomeInAddScreenAdapter extends RecyclerView.Adapter<Li
     public void onBindViewHolder(ListExpenseIncomeInAddScreenAdapter.ViewHolder holder, int position) {
         Category category = categoriesList.get(position);
         holder.txtCategoryName.setText(category.getCategoryName());
-        holder.ivCategoryImage.setImageResource(R.drawable.ic_game);
+
+        holder.ivCategoryImage.setImageDrawable(CommonIcon.getIcon(context, category.getIcon()));
+
+        holder.txtCategoryName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onSelectCategoryListener.onClickCategoryListener(category);
+            }
+        });
+
         holder.ivCategoryImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +103,6 @@ public class ListExpenseIncomeInAddScreenAdapter extends RecyclerView.Adapter<Li
             super(itemView);
             ivCategoryImage = (ImageView) itemView.findViewById(R.id.iv_category_name);
             txtCategoryName = (TextView) itemView.findViewById(R.id.txt_category_name);
-
             this.context = context;
         }
 

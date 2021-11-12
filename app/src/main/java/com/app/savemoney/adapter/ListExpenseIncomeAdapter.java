@@ -41,8 +41,6 @@ public class ListExpenseIncomeAdapter extends RecyclerView.Adapter<ListExpenseIn
     public ListExpenseIncomeAdapter(List<Category> categoriesList, Context context,ListCategoryFragmentCallBack onSelectCategoryListener) {
         this.categoriesList = categoriesList;
         this.context = context;
-
-
         this.onSelectCategoryListener = onSelectCategoryListener;
 
     }
