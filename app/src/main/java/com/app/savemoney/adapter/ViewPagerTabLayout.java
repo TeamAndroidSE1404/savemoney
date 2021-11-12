@@ -10,6 +10,7 @@ import com.app.savemoney.fragment.ExpenseFragment;
 import com.app.savemoney.fragment.IncomeFragment;
 
 public class ViewPagerTabLayout extends FragmentStatePagerAdapter {
+
     public ViewPagerTabLayout(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
@@ -17,14 +18,12 @@ public class ViewPagerTabLayout extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                return new ExpenseFragment();
-            case 1:
-                return new IncomeFragment();
-            default:
-                return new ExpenseFragment();
+        if (position == 0) {
+            return new ExpenseFragment();
+        } else {
+            return new IncomeFragment();
         }
+
     }
 
     @Override
@@ -46,5 +45,6 @@ public class ViewPagerTabLayout extends FragmentStatePagerAdapter {
         }
         return title;
     }
+
 
 }
