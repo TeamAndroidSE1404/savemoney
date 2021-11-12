@@ -112,6 +112,7 @@ public class AddEditCategoryActivity extends AppCompatActivity implements OnImag
                 public void onImageClick(int imageId, String imageName) {
                     imageIcon.setImageResource(imageId);
                     nameIcon.setText(imageName);
+
                     Toast.makeText(AddEditCategoryActivity.this, imageName, Toast.LENGTH_SHORT).show();
                 }
             });

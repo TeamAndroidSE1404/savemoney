@@ -19,6 +19,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.savemoney.adapter.MainRecyclerViewAdapter;
@@ -39,6 +40,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.core.Tag;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -46,6 +49,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+
+import lombok.SneakyThrows;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView imgMenu, imgAdd, imgCate;
 
+    private TextView txtCurrentDate, txtExpenseValue, txtIncomeValue, txtBalanceValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference expenseDb = FirebaseDatabase.getInstance(CommonCodeValues.INSTANCE).getReference(CommonCodeValues.DB_USERS).child(userUid).child(CommonCodeValues.DB_EXPENSES);
 
         expenseDb.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Expense> expenseList1 = new ArrayList<>();
@@ -122,16 +129,14 @@ public class MainActivity extends AppCompatActivity {
                     Expense expense = new Expense();
                     Log.d("123", String.valueOf(listCategory.size()));
                     if (!listCategory.isEmpty()) {
-
                         expense.toObject(expenseMap, listCategory);
                         if (expense.getCate() != null) {
                             expenseList1.add(expense);
                         }
-
                     }
-
                 }
                 getListExpense(expenseList1);
+                handleBalance(expenseList1);
                 mainRecyclerViewAdapter.changedData(tempMap);
             }
 
@@ -142,6 +147,37 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void handleBalance(List<Expense> expenseList) {
+        String curentMonthStr = txtCurrentDate.getText().toString();
+        Date convertStrToDate = null;
+        try {
+            convertStrToDate = new SimpleDateFormat("yyyy-MM").parse(curentMonthStr);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        int curentMonth = convertStrToDate.getMonth();
+        int curentYear = convertStrToDate.getYear();
+        double income = 0;
+        double expense = 0;
+        double balance = 0;
+
+        for (Expense e : expenseList) {
+            if (e.getDate().getMonth() == curentMonth && e.getDate().getYear() == curentYear) {
+                if (CommonCodeValues.INCOME.equals(e.getCate().getClassify())) {
+                    income += e.getPrice();
+                } else if (CommonCodeValues.SPENDING.equals(e.getCate().getClassify())) {
+                    expense += e.getPrice();
+                }
+            }
+        }
+
+        balance = income - expense;
+
+        txtIncomeValue.setText(Double.toString(income));
+        txtExpenseValue.setText(Double.toString(expense));
+        txtBalanceValue.setText(Double.toString(balance));
     }
 
     public void getCategory() {
@@ -163,9 +199,17 @@ public class MainActivity extends AppCompatActivity {
         imgMenu = findViewById(R.id.img_main_menu);
         imgAdd = findViewById(R.id.img_main_add);
         imgCate = findViewById(R.id.img_main_category);
+        txtCurrentDate = findViewById(R.id.txt_current_date);
+        txtExpenseValue = findViewById(R.id.txt_expense_value);
+        txtIncomeValue = findViewById(R.id.txt_income_value);
+        txtBalanceValue = findViewById(R.id.txt_balance_value);
+
+        Date currentDate = new Date();
+        String curDateStr = new SimpleDateFormat("yyyy-MM").format(currentDate);
+        txtCurrentDate.setText(curDateStr);
     }
 
-    private void setClickInit(){
+    private void setClickInit() {
         imgMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
