@@ -32,6 +32,7 @@ import com.app.savemoney.adapter.ViewPagerTabLayoutInAddEditScreen;
 import com.app.savemoney.callbacks.CategoryCallBack;
 
 import com.app.savemoney.common.CommonCodeValues;
+import com.app.savemoney.common.CommonIcon;
 import com.app.savemoney.common.ConvertUtils;
 import com.app.savemoney.common.DateUtils;
 import com.app.savemoney.common.OnSwipeTouchListener;
@@ -54,7 +55,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
     private LinearLayout layoutPopup, layoutOverlap;
 
     private TextView txtDate, txtTime, txtCategoryId;
-    private ImageView imgBack;
+    private ImageView imgBack, imgCateIcon;
     private EditText txtMoney, txtDecription;
 
     private Button btnAddExpense, btnDeleteExpense;
@@ -63,7 +64,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
     private String current = "";
     private CategoryDao categoryDao;
     private ExpenseDao expenseDao;
-    private String userUid, updateFlag;
+    private String userUid, updateFlag, dateUpdate, timeUpdate, noteUpdate, priceUpdate, iconUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,16 +82,17 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
         setListenerInit();
 
         setDateTimeInit();
-
+        getDataToUpdate();
     }
 
-    private void setInit(){
+    private void setInit() {
         tabLayout = findViewById(R.id.tab_layout_in_add_edit_screen);
         viewPager = findViewById(R.id.view_pager_in_add_edit_screen);
         txtDate = findViewById(R.id.txt_date);
         txtTime = findViewById(R.id.txt_time);
         layoutPopup = findViewById(R.id.layout_popup_category_list);
         imgBack = findViewById(R.id.icon_back_add_expense);
+        imgCateIcon = findViewById(R.id.iv_category_icon);
         layoutOverlap = findViewById(R.id.background_overlay);
         btnAddExpense = findViewById(R.id.btn_add_expense);
 
@@ -103,7 +105,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
         expenseDao = new ExpenseDao(userUid);
     }
 
-    private void setListenerInit(){
+    private void setListenerInit() {
         txtMoney.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
@@ -155,7 +157,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
         btnAddExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String totalMoney =  txtMoney.getText().toString();
+                String totalMoney = txtMoney.getText().toString();
 
                 String categoryId = txtCategoryId.getText().toString();
 
@@ -165,20 +167,20 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
 
                 String decription = txtDecription.toString();
 
-                if(StringUtils.isEmpty(totalMoney)||"0".equals(totalMoney)||StringUtils.isEmpty(categoryId)||StringUtils.isEmpty(time)||StringUtils.isEmpty(date)){
+                if (StringUtils.isEmpty(totalMoney) || "0".equals(totalMoney) || StringUtils.isEmpty(categoryId) || StringUtils.isEmpty(time) || StringUtils.isEmpty(date)) {
 
                     Toast.makeText(AddEditExpenseIncomeActivity.this, "Please fill all information", Toast.LENGTH_SHORT).show();
 
-                }else{
+                } else {
 
-                    String ap = time.substring(6,8);
-                    String hour = time.substring(0,2);
-                    String minus = time.substring(3,6);
+                    String ap = time.substring(6, 8);
+                    String hour = time.substring(0, 2);
+                    String minus = time.substring(3, 6);
 
-                    if("PM".equals(ap)){
-                        hour = String.valueOf(Integer.parseInt(hour)+12);
+                    if ("PM".equals(ap)) {
+                        hour = String.valueOf(Integer.parseInt(hour) + 12);
                     }
-                    String fullTime = date+" "+hour+":"+minus;
+                    String fullTime = date + " " + hour + ":" + minus;
                     Date fullDate = DateUtils.StringToDate(fullTime, CommonCodeValues.DATE_YYYY_MM_DD_HHMM);
                     Expense expense = new Expense("", decription, fullDate, new Category(categoryId), ConvertUtils.convertStringToDouble(totalMoney));
                     expenseDao.addExpense(expense);
@@ -221,6 +223,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
                 showTimePickerDialog();
             }
         });
+
         ViewPagerTabLayoutInAddEditScreen viewPagerTabLayoutInAddEditScreen = new ViewPagerTabLayoutInAddEditScreen(getSupportFragmentManager(),
                 FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(viewPagerTabLayoutInAddEditScreen);
@@ -235,15 +238,32 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
     }
 
 
+    private void updateThread() {
+        if (updateFlag.equals("1")) {
+            this.btnAddExpense.setText("Update Expense");
+            this.btnDeleteExpense.setVisibility(View.VISIBLE);
+        }
 
-    private void updateThread(){
-        this.btnAddExpense.setText("Update Expense");
-        this.btnDeleteExpense.setVisibility(View.VISIBLE);
-
-
+        
 
     }
 
+    public void getDataToUpdate() {
+        updateFlag = getIntent().getExtras().getString("UPDATE");
+        dateUpdate = getIntent().getExtras().getString("dateUpdate");
+        timeUpdate = getIntent().getExtras().getString("timeUpdate");
+        iconUpdate = getIntent().getExtras().getString("iconUpdate");
+        noteUpdate = getIntent().getExtras().getString("noteUpdate");
+        priceUpdate = getIntent().getExtras().getString("priceUpdate");
+
+        txtDate.setText(dateUpdate);
+        txtTime.setText(timeUpdate);
+        txtDecription.setText(noteUpdate);
+        txtMoney.setText(priceUpdate);
+        imgCateIcon.setImageDrawable(CommonIcon.getIcon(this, iconUpdate));
+
+
+    }
 
     public static String currencyFormat(String amount) {
         DecimalFormat formatter = new DecimalFormat("##,###,###,###");
