@@ -44,7 +44,8 @@ public class ChildRecyclerViewAdapter extends RecyclerView.Adapter<ChildRecycler
         Expense item = items.get(position);
 
         holder.icCategory.setImageDrawable(CommonIcon.getIcon(context, item.getCate().getIcon()));
-
+//        holder.icCategory.getLayoutParams().height = 60;
+//        holder.icCategory.getLayoutParams().width = 60;
 
         holder.txtNameItem.setText(item.getCate().getCategoryName());
 

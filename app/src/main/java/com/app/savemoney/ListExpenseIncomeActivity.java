@@ -1,6 +1,5 @@
 package com.app.savemoney;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -17,12 +15,13 @@ import androidx.viewpager.widget.ViewPager;
 import com.app.savemoney.adapter.ViewPagerTabLayout;
 import com.google.android.material.tabs.TabLayout;
 
-public class ListExpenseIncomeActivity extends AppCompatActivity {
+public class ListExpenseIncomeActivity extends AppCompatActivity{
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private LinearLayout btnAddCategory;
     private ImageView btnBackHomePage;
+    private int pos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +58,31 @@ public class ListExpenseIncomeActivity extends AppCompatActivity {
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FFFFFF"));
         tabLayout.setSelectedTabIndicatorHeight((int) (2 * getResources().getDisplayMetrics().density));
         tabLayout.setTabTextColors(Color.parseColor("#212121"), Color.parseColor("#FFFFFF"));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch(tab.getPosition()) {
+                    case 0:
+                        Toast.makeText(ListExpenseIncomeActivity.this, String.valueOf(0), Toast.LENGTH_SHORT).show();
+
+                        break;
+                    case 1:
+                        Toast.makeText(ListExpenseIncomeActivity.this, String.valueOf(1), Toast.LENGTH_SHORT).show();
+
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
 

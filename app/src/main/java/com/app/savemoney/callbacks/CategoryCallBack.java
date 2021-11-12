@@ -6,4 +6,5 @@ import java.util.Map;
 
 public interface CategoryCallBack {
     public void onCallbackCategory(Map<String, Category> value);
+
 }
