@@ -13,8 +13,8 @@
         <entry key="..\:/Workspace/savemoney/app/src/main/res/drawable/ic_setting_black.xml" value="0.3390625" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/drawable/main_header_selector.xml" value="0.425" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_add.xml" value="0.33" />
-        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_add_category.xml" value="0.33" />
-        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_add_expense.xml" value="0.1" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_add_category.xml" value="0.25" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_add_expense.xml" value="0.22" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_background.xml" value="0.21124620060790272" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_categories_item_list.xml" value="0.22" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_category_item.xml" value="0.434375" />
@@ -24,11 +24,9 @@
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_expense_list_items.xml" value="0.21124620060790272" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_home.xml" value="0.3500905797101449" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_icon_list_rv.xml" value="0.434375" />
-        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_mainscreen.xml" value="0.3125" />
+        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_main.xml" value="0.21124620060790272" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_menu.xml" value="0.1519756838905775" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_piechart_income.xml" value="0.1519756838905775" />
-        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_profile.xml" value="0.2947916666666667" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_register.xml" value="0.1519756838905775" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_setting.xml" value="0.1519756838905775" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/activity_test.xml" value="0.33" />
@@ -37,20 +35,15 @@
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_card.xml" value="0.1" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_category_list.xml" value="0.3091684434968017" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_expense.xml" value="0.3098958333333333" />
-        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_expense_1.xml" value="0.31068840579710144" />
-        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_expense_in_add_edit_screen.xml" value="0.2947916666666667" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_header.xml" value="0.21124620060790272" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_home.xml" value="0.3098958333333333" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_income.xml" value="0.434375" />
-        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_income_1.xml" value="0.31068840579710144" />
-        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_income_in_add_edit_screen.xml" value="0.2947916666666667" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_main.xml" value="0.434375" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_navigation_top_header.xml" value="0.22" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_popup_categories_list.xml" value="0.434375" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_popup_category_list.xml" value="0.434375" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/fragment_replace.xml" value="0.1" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/item_row.xml" value="0.1519756838905775" />
-        <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/section_row.xml" value="0.2947916666666667" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/slide_down.xml" value="0.37273550724637683" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/layout/slide_up.xml" value="0.37273550724637683" />
         <entry key="..\:/Workspace/savemoney/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18888888888888888" />
