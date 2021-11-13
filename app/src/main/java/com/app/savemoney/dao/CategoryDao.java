@@ -99,4 +99,8 @@ public class CategoryDao {
             }
         });
     }
+
+    public void deleteCate(String key){
+        cateRef.child(key).child(Category.DISABLE).setValue("1");
+    }
 }

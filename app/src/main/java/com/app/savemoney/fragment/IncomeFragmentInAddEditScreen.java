@@ -72,7 +72,7 @@ public class IncomeFragmentInAddEditScreen extends Fragment implements ListCateg
         userUid = sp1.getString("userUid", null);
         categoryDao = new CategoryDao(userUid);
         txtCategoryId = getActivity().findViewById(R.id.txt_category_id);
-        imgCategory = getActivity().findViewById(R.id.iv_category);
+        imgCategory = getActivity().findViewById(R.id.iv_category_icon);
 
 
         if (getArguments() != null) {

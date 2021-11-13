@@ -64,7 +64,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
     private String current = "";
     private CategoryDao categoryDao;
     private ExpenseDao expenseDao;
-    private String userUid, updateFlag, dateUpdate, timeUpdate, noteUpdate, priceUpdate, iconUpdate;
+    private String userUid, updateFlag, expenseUid, cateUid, dateUpdate, timeUpdate, noteUpdate, priceUpdate, iconUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,14 +75,18 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
 
         userUid = sp1.getString("userUid", null);
 
-        Intent intent = new Intent();
-        updateFlag = intent.getStringExtra("UPDATE");
 
         setInit();
         setListenerInit();
 
         setDateTimeInit();
-        getDataToUpdate();
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            updateFlag = "1";
+            getDataToUpdate();
+        }
+
     }
 
     private void setInit() {
@@ -165,7 +169,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
 
                 String date = txtDate.getText().toString();
 
-                String decription = txtDecription.toString();
+                String decription = txtDecription.getText().toString();
 
                 if (StringUtils.isEmpty(totalMoney) || "0".equals(totalMoney) || StringUtils.isEmpty(categoryId) || StringUtils.isEmpty(time) || StringUtils.isEmpty(date)) {
 
@@ -182,9 +186,18 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
                     }
                     String fullTime = date + " " + hour + ":" + minus;
                     Date fullDate = DateUtils.StringToDate(fullTime, CommonCodeValues.DATE_YYYY_MM_DD_HHMM);
-                    Expense expense = new Expense("", decription, fullDate, new Category(categoryId), ConvertUtils.convertStringToDouble(totalMoney));
-                    expenseDao.addExpense(expense);
 
+                    if (expenseUid != null && !expenseUid.isEmpty()) {
+                        Expense expense = new Expense(expenseUid, decription, fullDate, new Category(categoryId), ConvertUtils.convertStringToDouble(totalMoney));
+                        expenseDao.updateExpense(expense);
+                    } else {
+                        Expense expense = new Expense("", decription, fullDate, new Category(categoryId), ConvertUtils.convertStringToDouble(totalMoney));
+                        expenseDao.addExpense(expense);
+                    }
+
+
+                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(intent);
                     finish();
                 }
 
@@ -195,6 +208,8 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -244,24 +259,39 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
             this.btnDeleteExpense.setVisibility(View.VISIBLE);
         }
 
-        
 
     }
 
     public void getDataToUpdate() {
-        updateFlag = getIntent().getExtras().getString("UPDATE");
+
+        this.btnAddExpense.setText("Update Expense");
+        this.btnDeleteExpense.setVisibility(View.VISIBLE);
+
+        btnDeleteExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                expenseDao.deleteExpense(expenseUid);
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        expenseUid = getIntent().getExtras().getString("expenseUid");
+        cateUid = getIntent().getExtras().getString("categoryUid");
         dateUpdate = getIntent().getExtras().getString("dateUpdate");
         timeUpdate = getIntent().getExtras().getString("timeUpdate");
         iconUpdate = getIntent().getExtras().getString("iconUpdate");
         noteUpdate = getIntent().getExtras().getString("noteUpdate");
         priceUpdate = getIntent().getExtras().getString("priceUpdate");
 
+
         txtDate.setText(dateUpdate);
         txtTime.setText(timeUpdate);
-        txtDecription.setText(noteUpdate);
+        txtDecription.setText(noteUpdate == null ? "" : noteUpdate);
         txtMoney.setText(priceUpdate);
         imgCateIcon.setImageDrawable(CommonIcon.getIcon(this, iconUpdate));
-
+        txtCategoryId.setText(cateUid);
 
     }
 
@@ -295,7 +325,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
                     AM_PM = "PM";
                 }
 
-                txtTime.setText(String.format("%02d",hourOfDay) + ":" + String.format("%02d", minute) + " " + AM_PM);
+                txtTime.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + " " + AM_PM);
                 lastSelectedHour = hourOfDay;
                 lastSelectedMinute = minute;
             }
@@ -327,7 +357,7 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
         this.lastSelectedHour = c.get(Calendar.HOUR_OF_DAY);
         this.lastSelectedMinute = c.get(Calendar.MINUTE);
         int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
+        int month = c.get(Calendar.MONTH)+1;
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         String date = year + "-" + month + "-" + day;
@@ -338,7 +368,6 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
             AM_PM = "PM";
         }
 
-
         this.txtDate.setText(date);
         txtTime.setText(String.format("%02d", this.lastSelectedHour) + ":" + String.format("%02d", this.lastSelectedMinute) + " " + AM_PM);
 
@@ -347,7 +376,8 @@ public class AddEditExpenseIncomeActivity extends AppCompatActivity implements D
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String date = year + "-" + month + "-" + dayOfMonth;
+        int tMonth = month+1;
+        String date = year + "-" + tMonth + "-" + dayOfMonth;
         txtDate.setText(date);
     }
 }

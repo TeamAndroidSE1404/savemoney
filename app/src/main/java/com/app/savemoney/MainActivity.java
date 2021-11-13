@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.app.savemoney.adapter.MainRecyclerViewAdapter;
 import com.app.savemoney.callbacks.CategoryCallBack;
 import com.app.savemoney.common.CommonCodeValues;
+import com.app.savemoney.common.ConvertUtils;
 import com.app.savemoney.common.DateUtils;
 import com.app.savemoney.dao.CategoryDao;
 import com.app.savemoney.model.Category;
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void handleBalance(List<Expense> expenseList) {
+    private void handleBalance(List<Expense> expenseList) {
         String curentMonthStr = txtCurrentDate.getText().toString();
         Date convertStrToDate = null;
         try {
@@ -177,9 +178,9 @@ public class MainActivity extends AppCompatActivity {
 
         balance = income - expense;
 
-        txtIncomeValue.setText(Double.toString(income));
-        txtExpenseValue.setText(Double.toString(expense));
-        txtBalanceValue.setText(Double.toString(balance));
+        txtIncomeValue.setText(ConvertUtils.addComaPrice(income));
+        txtExpenseValue.setText(ConvertUtils.addComaPrice(expense));
+        txtBalanceValue.setText(ConvertUtils.addComaPrice(balance));
 
     }
 
@@ -231,6 +232,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intentMenu = new Intent(MainActivity.this, AddEditExpenseIncomeActivity.class);
                 startActivity(intentMenu);
+            }
+        });
+
+        imgCate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ListExpenseIncomeActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

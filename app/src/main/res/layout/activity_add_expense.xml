@@ -244,7 +244,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
-                        android:backgroundTint="#2497F3"
+                        android:backgroundTint="#FF8243"
                         android:visibility="invisible"
                         android:text="Delete Expense"
                         android:textColor="@color/white" />

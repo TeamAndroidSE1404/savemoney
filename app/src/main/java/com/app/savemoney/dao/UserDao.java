@@ -61,27 +61,44 @@ public class UserDao {
         userRef.child(key).setValue(user.toMap());
 
 
-       String cateKey = userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).push().getKey();
+        String cateKey = userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).push().getKey();
 
-        Category cate = new Category(cateKey, "Cate1", "icon1", CommonCodeValues.INCOME, "0");
+        Category cate = new Category(cateKey, "Chứng khoáng", "icon_name_7", CommonCodeValues.INCOME, "0");
 
         userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).child(cate.getUid()).setValue(cate.toMap());
 
-
-
         String cateKey1 = userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).push().getKey();
 
-        Category cate1 = new Category(cateKey1, "Cate1", "icon1", CommonCodeValues.INCOME, "0");
+        Category cate1 = new Category(cateKey1, "Bán xe", "icon_name_10", CommonCodeValues.INCOME, "0");
 
         userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).child(cate1.getUid()).setValue(cate1.toMap());
 
+        String cateKey2 = userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).push().getKey();
+
+        Category cate2 = new Category(cateKey2, "Sữa chữa", "icon_name_8", CommonCodeValues.INCOME, "0");
+
+        userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).child(cate2.getUid()).setValue(cate2.toMap());
 
 
-        String expenseKey = userRef.child(key).child(CommonCodeValues.DB_EXPENSES).push().getKey();
+        String cateKey3 = userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).push().getKey();
 
-        Expense expense = new Expense(expenseKey, "Decription", DateUtils.StringToDate("20210920_1010", CommonCodeValues.DATE_DDMMYYYY_HHMM), cate, 20);
+        Category cate3 = new Category(cateKey3, "Thể thao", "icon_name_6", CommonCodeValues.SPENDING, "0");
 
-        userRef.child(key).child(CommonCodeValues.DB_EXPENSES).child(expense.getUid()).setValue(expense.toMap());
+        userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).child(cate3.getUid()).setValue(cate3.toMap());
+
+        String cateKey4 = userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).push().getKey();
+
+        Category cate4 = new Category(cateKey4, "Giải trí", "icon_name_1", CommonCodeValues.SPENDING, "0");
+
+        userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).child(cate4.getUid()).setValue(cate4.toMap());
+
+        String cateKey5 = userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).push().getKey();
+
+        Category cate5 = new Category(cateKey5, "Đồ ăn", "icon_name_4", CommonCodeValues.SPENDING, "0");
+
+        userRef.child(key).child(CommonCodeValues.DB_CATEGORIES).child(cate5.getUid()).setValue(cate5.toMap());
+
+
 
     }
 
@@ -114,7 +131,7 @@ public class UserDao {
 
             }
         });
-
-
     }
+
+
 }

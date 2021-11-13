@@ -40,12 +40,11 @@ public class AddEditCategoryActivity extends AppCompatActivity implements OnImag
     public static final String CLASSIFY_CATE = "classifyCate";
 
     private OnImageClickListener onImageClickListener;
-    private int[] images = {R.drawable.ic_game, R.drawable.ic_pencil_card, R.drawable.ic_remove_category,
-            R.drawable.ic_gear_setting, R.drawable.ic_pencil_card, R.drawable.ic_pencil_card,
-            R.drawable.ic_pencil_card,R.drawable.ic_pencil_card, R.drawable.ic_pencil_card, R.drawable.ic_pencil_card,
-            R.drawable.ic_game, R.drawable.ic_pencil_card, R.drawable.ic_remove_category,
-            R.drawable.ic_gear_setting, R.drawable.ic_pencil_card, R.drawable.ic_pencil_card,
-            R.drawable.ic_pencil_card,R.drawable.ic_pencil_card, R.drawable.ic_pencil_card, R.drawable.ic_pencil_card};
+    private int[] images = {R.drawable.icon_name_1, R.drawable.icon_name_2, R.drawable.icon_name_3,
+            R.drawable.icon_name_4, R.drawable.icon_name_5, R.drawable.icon_name_6,
+            R.drawable.icon_name_7, R.drawable.icon_name_8, R.drawable.icon_name_9, R.drawable.icon_name_10,
+            R.drawable.icon_name_11, R.drawable.icon_name_12, R.drawable.icon_name_13,
+            R.drawable.icon_name_14, R.drawable.icon_name_15};
 
 
     @Override
@@ -58,9 +57,9 @@ public class AddEditCategoryActivity extends AppCompatActivity implements OnImag
 
         Intent intent = getIntent();
         classifyCate = CommonCodeValues.SPENDING;
-        if(intent!=null){
+        if (intent != null) {
             String temp = intent.getStringExtra(CLASSIFY_CATE);
-            classifyCate = StringUtils.isEmpty(temp)?CommonCodeValues.SPENDING:temp;
+            classifyCate = StringUtils.isEmpty(temp) ? CommonCodeValues.SPENDING : temp;
         }
 
         setContentView(R.layout.activity_add_category);
@@ -86,11 +85,13 @@ public class AddEditCategoryActivity extends AppCompatActivity implements OnImag
 
                 String categoryIcon = nameIcon.getText().toString();
 
-                if(StringUtils.isEmpty(categoryName)||StringUtils.isEmpty(categoryIcon)){
+                if (StringUtils.isEmpty(categoryName) || StringUtils.isEmpty(categoryIcon)) {
                     Toast.makeText(getBaseContext(), "Please fill all information!!", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     Category cate = new Category("", categoryName, categoryIcon, classifyCate, "0");
                     categoryDao.addCategory(cate);
+                    Intent intentMain = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(intentMain);
                     finish();
                 }
 
@@ -100,6 +101,8 @@ public class AddEditCategoryActivity extends AppCompatActivity implements OnImag
         btnBackHomePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });

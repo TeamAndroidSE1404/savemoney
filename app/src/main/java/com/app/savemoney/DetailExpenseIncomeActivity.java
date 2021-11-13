@@ -3,6 +3,7 @@ package com.app.savemoney;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.app.savemoney.callbacks.CategoryCallBack;
 import com.app.savemoney.callbacks.ExpenseCallBack;
 import com.app.savemoney.common.CommonIcon;
+import com.app.savemoney.common.ConvertUtils;
 import com.app.savemoney.dao.CategoryDao;
 import com.app.savemoney.dao.ExpenseDao;
 import com.app.savemoney.model.Category;
@@ -46,7 +48,7 @@ public class DetailExpenseIncomeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        if(intent!=null){
+        if (intent != null) {
             cateId = intent.getStringExtra("CATEGORY");
             expenseId = intent.getStringExtra("EXPENSE");
         }
@@ -54,8 +56,17 @@ public class DetailExpenseIncomeActivity extends AppCompatActivity {
         setInit();
 
         setListenerInit();
-        setData();
+
+
         getDataFromDb();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                setData();
+            }
+        }, 1000);
 
 
     }
@@ -78,7 +89,7 @@ public class DetailExpenseIncomeActivity extends AppCompatActivity {
     }
 
 
-    private void setListenerInit(){
+    private void setListenerInit() {
         btnBackHomePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,25 +103,38 @@ public class DetailExpenseIncomeActivity extends AppCompatActivity {
                 DateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
                 DateFormat formatterTime = new SimpleDateFormat("HH:mm");
                 String dateStr = formatterDate.format(expense.getDate());
-                String timeStr = formatterTime.format(expense.getDate());
+//                String timeStr = formatterTime.format(expense.getDate());
+                int hour = expense.getDate().getHours();
+                int minute = expense.getDate().getMinutes();
+                String AM_PM = "AM";
+                if (hour < 12) {
+                    AM_PM = "AM";
+                } else {
+                    AM_PM = "PM";
+                }
+
+                String finalTime = String.format("%02d", hour) + ":" + String.format("%02d", minute) + " " + AM_PM;
 
 //                iconCategory.setImageDrawable(CommonIcon.getIcon(, category.getIcon()));
 
                 Intent intent = new Intent(DetailExpenseIncomeActivity.this, AddEditExpenseIncomeActivity.class);
                 Bundle mBundle = new Bundle();
                 mBundle.putString("UPDATE", "1");
+                mBundle.putString("expenseUid", expense.getUid());
+                mBundle.putString("categoryUid", category.getUid());
                 mBundle.putString("dateUpdate", dateStr);
-                mBundle.putString("timeUpdate", timeStr);
+                mBundle.putString("timeUpdate", finalTime);
                 mBundle.putString("noteUpdate", expense.getDescription());
                 mBundle.putString("priceUpdate", String.valueOf(expense.getPrice()));
                 mBundle.putString("iconUpdate", category.getIcon());
                 intent.putExtras(mBundle);
                 startActivity(intent);
+                finish();
             }
         });
     }
 
-    private void getDataFromDb(){
+    private void getDataFromDb() {
         categoryDao.getCateByKey(cateId, new CategoryCallBack() {
             @Override
             public void onCallbackCategory(Map<String, Category> value) {
@@ -131,7 +155,7 @@ public class DetailExpenseIncomeActivity extends AppCompatActivity {
         });
     }
 
-    private void setData(){
+    private void setData() {
 //        String dateStr = txtDate.getText().toString() + " " + txtTime.getText().toString();
 
         DateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
@@ -141,10 +165,10 @@ public class DetailExpenseIncomeActivity extends AppCompatActivity {
 
         iconCategory.setImageDrawable(CommonIcon.getIcon(this, category.getIcon()));
         txtCategory.setText(category.getCategoryName());
-        txtPrice.setText(String.valueOf(expense.getPrice()));
+        txtPrice.setText(ConvertUtils.addComaPrice(expense.getPrice()));
         txtDate.setText(dateStr);
         txtTime.setText(timeStr);
-        txtNote.setText(expense.getDescription());
-
+        txtNote.setText(expense.getDescription() == null ? "" : expense.getDescription());
+Log.d("aaa", expense.getDescription());
     }
 }

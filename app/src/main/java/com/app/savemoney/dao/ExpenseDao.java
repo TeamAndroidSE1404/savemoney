@@ -84,7 +84,6 @@ public class ExpenseDao {
 
     public void deleteExpense(String expenseId) {
         expenseRef.child(expenseId).removeValue();
-
     }
 
 }

@@ -75,7 +75,7 @@ public class ExpenseFragmentInAddEditScreen extends Fragment implements ListCate
         userUid = sp1.getString("userUid", null);
         categoryDao = new CategoryDao(userUid);
         txtCategoryId = getActivity().findViewById(R.id.txt_category_id);
-        imgCategory = getActivity().findViewById(R.id.iv_category);
+        imgCategory = getActivity().findViewById(R.id.iv_category_icon);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);

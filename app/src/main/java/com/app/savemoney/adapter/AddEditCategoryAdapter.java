@@ -21,8 +21,7 @@ public class AddEditCategoryAdapter extends RecyclerView.Adapter<AddEditCategory
 
     private String[] iconName = {"icon_name_1", "icon_name_2", "icon_name_3", "icon_name_4",
             "icon_name_5", "icon_name_6", "icon_name_7", "icon_name_8", "icon_name_9",
-            "icon_name_10", "icon_name_11", "icon_name_12", "icon_name_13", "icon_name_14", "icon_name_15",
-            "icon_name_16", "icon_name_17", "icon_name_18", "icon_name_19", "icon_name_20"};
+            "icon_name_10", "icon_name_11", "icon_name_12", "icon_name_13", "icon_name_14", "icon_name_15"};
     private AddEditCategoryAdapter.ImageViewHolder imageViewHolder;
     private int[] images;
     public Context context;
@@ -49,6 +48,8 @@ public class AddEditCategoryAdapter extends RecyclerView.Adapter<AddEditCategory
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         //abxc
+
+
         int imageId = images[position];
         String imageName = iconName[position];
         holder.ivCategoryImage.setImageResource(imageId);

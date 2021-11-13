@@ -66,10 +66,23 @@ public class ChildRecyclerViewAdapter extends RecyclerView.Adapter<ChildRecycler
                 Intent intent = new Intent(context, DetailExpenseIncomeActivity.class);
                 intent.putExtra("CATEGORY", item.getCate().getUid());
                 intent.putExtra("EXPENSE", item.getUid());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 
             }
         });
+        holder.txtNameItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailExpenseIncomeActivity.class);
+                intent.putExtra("CATEGORY", item.getCate().getUid());
+                intent.putExtra("EXPENSE", item.getUid());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+
+            }
+        });
+
 
     }
 

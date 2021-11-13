@@ -40,14 +40,16 @@ public class ListExpenseIncomeActivity extends AppCompatActivity{
                 Intent intent = new Intent(ListExpenseIncomeActivity.this, AddEditCategoryActivity.class);
                 intent.putExtra(AddEditCategoryActivity.CLASSIFY_CATE, String.valueOf(pos));
                 startActivity(intent);
+                finish();
             }
         });
 
         btnBackHomePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ListExpenseIncomeActivity.this, MainActivity.class);
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

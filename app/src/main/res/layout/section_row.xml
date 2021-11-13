@@ -29,9 +29,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp">
+            android:layout_marginStart="20dp">
             <TextView
                 android:id="@+id/txtSpending"
                 android:layout_width="wrap_content"
@@ -47,7 +47,9 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            >
             <TextView
                 android:id="@+id/txtIncome"
                 android:layout_width="wrap_content"

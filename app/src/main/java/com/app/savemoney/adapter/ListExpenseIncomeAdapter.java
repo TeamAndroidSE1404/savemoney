@@ -20,6 +20,7 @@ import com.app.savemoney.AddEditCategoryActivity;
 import com.app.savemoney.ListExpenseIncomeActivity;
 import com.app.savemoney.R;
 import com.app.savemoney.callbacks.ListCategoryFragmentCallBack;
+import com.app.savemoney.common.CommonIcon;
 import com.app.savemoney.model.Category;
 
 import java.util.List;
@@ -68,8 +69,10 @@ public class ListExpenseIncomeAdapter extends RecyclerView.Adapter<ListExpenseIn
     @Override
     public void onBindViewHolder(ListExpenseIncomeAdapter.ViewHolder holder, int position) {
         Category category = categoriesList.get(position);
+
         holder.txtCategoryName.setText(category.getCategoryName());
-        holder.ivCategoryImage.setImageResource(R.drawable.ic_game);
+
+        holder.ivCategoryImage.setImageDrawable(CommonIcon.getIcon(context, category.getIcon()));
         holder.ivRemove.setImageResource(R.drawable.ic_remove_category);
         holder.ivRemove.setOnClickListener(new View.OnClickListener() {
             @Override
